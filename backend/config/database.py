@@ -1,5 +1,6 @@
 import mysql.connector
 import os
+from tabulate import tabulate
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -13,13 +14,13 @@ try:
     )
 
     cursor = mydb.cursor()
-    cursor.execute("SELECT * FROM users")
-    result = cursor.fetchone()
+    cursor.execute("SELECT * FROM companies")
+    result = cursor.fetchall()
+    columns = [desc[0] for desc in cursor.description]
 
     if result:
         print("Database connection established")
-        print("Server version: ")
-        print("Result: ", result)
+        print("Result:\n",tabulate(result,headers=columns,tablefmt='fancy_grid'))
 
 except mysql.connector.Error as err:
     print("Failed to connect to MySQL database")
