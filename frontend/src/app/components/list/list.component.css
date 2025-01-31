@@ -1,19 +1,16 @@
 
-
 table {
-  height: 3.438rem;
+  width:100%;
   border-collapse: collapse;
+  table-layout: auto;
+  margin-bottom: 86px;
 }
 
 .th_column {
   height: 3.438rem;
-  width: 74.563rem;
+  width: fit-content;
   background: #F9DE4E;
-}
-
-.table_column {
-  width: 74.563rem;
-  height: 3.438rem;
+  text-align: left;
 }
 
 .tr_column {
@@ -27,5 +24,29 @@ tr:nth-child(even) {
 }
 
 td {
-  text-align: center;
+  text-align: left;
+  width: fit-content;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
+th:first-child, td:first-child {
+  padding-left: 34px;
+}
+
+th, td {
+  padding-right: 56px;
+  text-align: left;
+  white-space: nowrap;
+  min-width: 150px;
+}
+
+td:last-child {
+  width: 100%;
 }
