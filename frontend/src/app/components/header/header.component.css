@@ -1,6 +1,6 @@
 header{
   width: 100vw;
-  height: 787px;
+  height: 287px;
   background: #F9DE4E;
   padding-top: 94px;
   display: flex;
@@ -10,8 +10,9 @@ header{
     display: flex;
     height: 56px;
     width: calc(100% - 267px);
-    /*margin: auto;*/
-    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+
 
     #title {
       height: 56px;
@@ -19,7 +20,8 @@ header{
       font-size: 48px;
       font-weight: 900;
       line-height: 56.25px;
-      margin-right: 5.084% ;
+      margin-right: 54.21px;
+
     }
 
 
@@ -27,42 +29,53 @@ header{
     display: flex;
     list-style: none;
     height: 56px;
+    width: 57.569%;
+
 
 
 
 
      li{
        display: inline;
-       margin-right:28.71px;
+       margin-right:2.01%;
        font-family: Roboto;
        font-size: 20px;
        font-weight:600;
        line-height: 56px;
+       padding-left: 10px;
+       padding-right: 10px;
+
 
      }
+
+    li:hover {
+      border : 1px solid black;
+
+    }
   }
 
     .buttoncontainer{
-      margin-left: 21.38%;
+      display: flex;
+      margin-left: 21.389%;
+      align-items: center;
+      font-family: Roboto;
+      font-size: 20px;
+      font-weight: 600;
+
+      .Login,.Signup{
+        width: 102px;
+        height: 37px;
+        text-align: center;
+        line-height: 37px;
+
+      }
+      .Login:hover,.Signup:hover {
+         border-radius: 10px;
+        background: white;
+      }
     }
 
     }
 
-  .branding {
-    display: flex;
-    justify-content: space-around;
-    margin-top:139px;
-    width: 85%;
-    margin-left: auto;
-    margin-right: auto;
-    h1 {
-      width: 595px;
-      height: 237px;
 
-    }
-    img{
-      position: relative;
-      bottom : 60px;
-    }
-  }
 }
