@@ -24,7 +24,6 @@ try:
     if result:
         print("result", tabulate(result, headers=columns, tablefmt = "fancy_grid" ))
         print("Database connection established")
-        print("Result: ", result)
 
 except mysql.connector.Error as err:
     print("Failed to connect to MySQL database")
