@@ -1,0 +1,32 @@
+.section_info {
+  display: flex;
+  justify-content: space-between;
+  width: 81.875rem;
+  height: 432px;
+  margin-left: 8.114rem;
+  margin-top: 86px;
+}
+
+.text_info {
+  font-size: 68px;
+  font-weight: 900;
+  margin-top: 104px;
+}
+
+.image_info {
+  width: 48.188rem;
+  height: 27.125rem;
+  margin-top: 1.563rem;
+  background-image: url("../../../assets/images/Rectangle_17.png");
+  background-repeat: no-repeat;
+}
+
+.phone_image_info {
+  width: 30.375rem;
+  height: 384px;
+  margin-left: 13.318rem;
+  position: relative;
+  bottom: 1.563rem;
+/*  background-image: url("../../../assets/images/DrawKit_Vector_Illustration.png");
+  background-repeat: no-repeat; */
+}
