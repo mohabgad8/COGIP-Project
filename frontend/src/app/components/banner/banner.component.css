@@ -1,0 +1,19 @@
+.banner {
+  height: 500px;
+  background: #F9DE4E;
+  display: flex;
+  margin-bottom: 52px;
+
+  width: 100%;
+  h1{
+    width: 41.319%;
+    margin-left:9.444% ;
+  }
+  img {
+    width:50%;
+    height: 586px;
+    position: relative;
+    bottom: 25%;
+
+  }
+}
