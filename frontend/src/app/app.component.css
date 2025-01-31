@@ -1,4 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.section_tables {
+  width: 74.563rem;
+  height: fit-content;
+  /* margin-bottom: 2.688rem; */
+  margin: auto;
+}
+
 h1 {
     background: black;
     color: white;
   }
+
+h2 {
+  margin-bottom: 5.063rem;
+  font-weight: 900;
+  font-size: 60px;
+}
