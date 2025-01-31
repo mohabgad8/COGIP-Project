@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import {HeaderComponent} from './components/header/header.component';
 import {ListComponent} from './components/list/list.component';
+import {InfoComponent} from './components/info/info.component';
 
 
 @Component({
   selector: 'app-root',
   standalone:true,
-  imports: [HeaderComponent, ListComponent],
+  imports: [HeaderComponent, ListComponent, InfoComponent],
   templateUrl:'app.component.html',
   styleUrl: 'app.component.css'
 })
