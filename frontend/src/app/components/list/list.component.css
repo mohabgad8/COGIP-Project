@@ -1,0 +1,31 @@
+
+
+table {
+  height: 3.438rem;
+  border-collapse: collapse;
+}
+
+.th_column {
+  height: 3.438rem;
+  width: 74.563rem;
+  background: #F9DE4E;
+}
+
+.table_column {
+  width: 74.563rem;
+  height: 3.438rem;
+}
+
+.tr_column {
+  background: #F5F5F5;
+  width: 74.563rem;
+  height: 3.438rem;
+}
+
+tr:nth-child(even) {
+  background-color: white;
+}
+
+td {
+  text-align: center;
+}
