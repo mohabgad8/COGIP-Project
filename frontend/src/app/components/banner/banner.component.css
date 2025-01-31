@@ -2,18 +2,28 @@
   height: 500px;
   background: #F9DE4E;
   display: flex;
+  justify-content: space-between;
   margin-bottom: 52px;
-
   width: 100%;
+
+  .titleandimg{
+    width: calc(100% - 251px);
+    height: 500px;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
   h1{
-    width: 41.319%;
-    margin-left:9.444% ;
+    margin-left: 22px;
+    display: inline-block;
+    white-space: nowrap;
+
+
   }
   img {
-    width:50%;
-    height: 586px;
     position: relative;
-    bottom: 25%;
+    left: 100px;
+    bottom: 100px;
 
   }
+}
 }
