@@ -8,6 +8,9 @@ table {
 
 .th_column {
   height: 3.438rem;
+  font-family: Roboto;
+  font-weight: 600;
+  font-size: 20px;
   width: fit-content;
   background: #F9DE4E;
   text-align: left;

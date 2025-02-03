@@ -5,10 +5,11 @@
 }
 
 .section_tables {
-  width: 74.563rem;
+  width: 82.847%;
+  margin-left: 9.444%;
   height: fit-content;
   /* margin-bottom: 2.688rem; */
-  margin: auto;
+
 }
 
 h1 {
@@ -20,4 +21,6 @@ h2 {
   margin-bottom: 5.063rem;
   font-weight: 900;
   font-size: 60px;
+  font-family: Inter;
+  margin-left: 13px;
 }

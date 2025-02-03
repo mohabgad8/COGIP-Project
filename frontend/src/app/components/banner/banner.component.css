@@ -5,6 +5,8 @@
   justify-content: space-between;
   margin-bottom: 52px;
   width: 100%;
+  position: relative;
+  bottom: 1px;
 
   .titleandimg{
     width: calc(100% - 251px);
@@ -21,8 +23,9 @@
   }
   img {
     position: relative;
-    left: 100px;
+    left: 50px;
     bottom: 100px;
+    
 
   }
 }
