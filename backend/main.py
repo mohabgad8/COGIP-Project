@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from routes.companies_routes import router as companies_router
 from routes.contacts_routes import router as contacts_router
 from routes.invoices_routes import router as invoices_router
+from routes.users_routes import router as users_router
 
 app = FastAPI()
 
@@ -21,6 +22,10 @@ app.include_router(
     prefix="/invoices"
 )
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+app.include_router(
+    users_router
+)
+
+# @app.get("/")
+# async def root():
+#     return {"message": "Hello World"}
