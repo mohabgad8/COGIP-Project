@@ -12,23 +12,7 @@ import {FooterComponent} from './components/SmallComponents/footer/footer.compon
   templateUrl:'app.component.html',
   styleUrl: 'app.component.css'
 })
-export class AppComponent {}
+export class AppComponent {
 
-  contactsColumn = [
-    {
-      key: "name", label: "Name"
-    },
-    {
-      key: "phone", label: "Phone"
-    },
-    {
-      key: "mail", label: "Mail"
-    },
-    {
-      key: "company", label: "Company"
-    },
-    {
-      key: "create at", label: "Create at"
-    }
-  ]
 
+}

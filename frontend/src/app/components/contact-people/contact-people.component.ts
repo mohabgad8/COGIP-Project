@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class ContactPeopleComponent {
 
+  title = 'Contact People';
+
 }
