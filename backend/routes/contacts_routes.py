@@ -36,13 +36,13 @@ async def get_contact():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("search_contact")
+@router.get("/search_contact")
 async def search_contacts(search: SearchContact):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        query = "SELECT contacts.name, contacts.phone, contacts.email, companies.name FROM contacts LEFT JOIN companies ON contacts.company_id = companies.id WHERE companies.name = %s"
+        query = "SELECT contacts.name, contacts.phone, contacts.email, companies.name AS company_name, companies.created_at FROM contacts LEFT JOIN companies ON contacts.company_id = companies.id WHERE contacts.name = %s"
         values = (search.name, )
 
         cursor.execute(query, values)
