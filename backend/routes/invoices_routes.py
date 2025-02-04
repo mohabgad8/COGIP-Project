@@ -1,9 +1,16 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.params import Body
 from config.database import get_connection
+from pydantic import BaseModel, Field
 
 router = APIRouter()
 
+class InvoicesVerify(BaseModel):
+    ref : str = Field(min_length=2, max_length=50)
+    id_company : int
+
+class SearchInvoices(BaseModel):
+    name: str = Field(min_length=2, max_length=50)
 
 @router.get("/get_all_invoices")
 
@@ -24,6 +31,27 @@ async def get_invoices():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
+@router.get("/search_invoices")
+
+async def search_invoices(search: SearchInvoices):
+    try:
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        query = "SELECT invoices.ref, invoices.created_at, companies.name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE companies.name = %s"
+        values = (search.name, )
+
+        cursor.execute(query, values)
+        search_invoice = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return search_invoice
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/get_last_invoice")
 
@@ -46,13 +74,13 @@ async def get_last_invoices():
 
 @router.post("/add_invoice")
 
-async def create_invoices(invoices: dict = Body(...) ):
+async def create_invoices(invoices: InvoicesVerify ):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
         query = "INSERT INTO invoices (ref, id_company) VALUES (%s, %s)"
-        values = (invoices['ref'], invoices['id_company'])
+        values = (invoices.ref, invoices.id_company)
 
         cursor.execute(query, values)
         conn.commit()
@@ -72,7 +100,7 @@ async def create_invoices(invoices: dict = Body(...) ):
 
 @router.put("/update_invoice/{invoice_id}")
 
-async def update_invoices(invoice_id: int, invoices: dict = Body(...) ):
+async def update_invoices(invoice_id: int, invoices: InvoicesVerify ):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
@@ -82,7 +110,7 @@ async def update_invoices(invoice_id: int, invoices: dict = Body(...) ):
             raise HTTPException(status_code=404, detail="Facture non trouvé")
 
         query = "UPDATE invoices SET ref = %s WHERE id = %s"
-        values = (invoices['ref'], invoice_id)
+        values = (invoices.ref, invoice_id)
 
         cursor.execute(query, values)
         conn.commit()
@@ -101,7 +129,7 @@ async def update_invoices(invoice_id: int, invoices: dict = Body(...) ):
 
 
 @router.delete("/delete_invoice/{invoice_id}")
-async def delete_invoice(invoice_id: int, invoices: dict = Body(...) ):
+async def delete_invoice(invoice_id: int, invoices: InvoicesVerify):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
@@ -111,7 +139,7 @@ async def delete_invoice(invoice_id: int, invoices: dict = Body(...) ):
             raise HTTPException(status_code=404, detail="Contact non trouvé")
 
         query = "DELETE FROM invoices WHERE ref = %s"
-        values = (invoices['ref'],)
+        values = (invoices.ref,)
 
         cursor.execute(query, values)
         conn.commit()
