@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException
+from fastapi.params import Body
 from config.database import get_connection
 from pydantic import BaseModel, Field
 
@@ -11,8 +12,10 @@ class InvoicesVerify(BaseModel):
 class SearchInvoices(BaseModel):
     name: str = Field(min_length=2, max_length=50)
 
-@router.get("/get_all_invoices")
+class DeleteInvoices(BaseModel):
+    ref : str = Field(min_length=2, max_length=50)
 
+@router.get("/get_all_invoices")
 async def get_invoices():
     try:
         conn = get_connection()
@@ -31,14 +34,13 @@ async def get_invoices():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/search_invoices")
-
+@router.get("/search_invoice")
 async def search_invoices(search: SearchInvoices):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        query = "SELECT invoices.ref, invoices.created_at, companies.name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE companies.name = %s"
+        query = "SELECT invoices.ref, companies.name, invoices.created_at FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE companies.name = %s"
         values = (search.name, )
 
         cursor.execute(query, values)
@@ -52,8 +54,7 @@ async def search_invoices(search: SearchInvoices):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@router.get("/get_last_invoice")
-
+@router.get("/get_last_invoices")
 async def get_last_invoices():
     try:
         conn = get_connection()
@@ -72,7 +73,6 @@ async def get_last_invoices():
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/add_invoice")
-
 async def create_invoices(invoices: InvoicesVerify ):
     try:
         conn = get_connection()
@@ -98,7 +98,6 @@ async def create_invoices(invoices: InvoicesVerify ):
 
 
 @router.put("/update_invoice/{invoice_id}")
-
 async def update_invoices(invoice_id: int, invoices: InvoicesVerify ):
     try:
         conn = get_connection()
@@ -128,7 +127,7 @@ async def update_invoices(invoice_id: int, invoices: InvoicesVerify ):
 
 
 @router.delete("/delete_invoice/{invoice_id}")
-async def delete_invoice(invoice_id: int, invoices: InvoicesVerify):
+async def delete_invoice(invoice_id: int, invoices: DeleteInvoices):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
