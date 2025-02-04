@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.params import Body
-from core.database import get_connection
+from config.database import get_connection
 
 router = APIRouter()
 
@@ -24,6 +24,25 @@ async def get_invoices():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
+@router.get("/get_last_invoice")
+
+async def get_last_invoices():
+    try:
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT invoices.ref, invoices.created_at, companies.name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id LIMIT 5")
+
+        get_last_invoice = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return get_last_invoice
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/add_invoice")
 
