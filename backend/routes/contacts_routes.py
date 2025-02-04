@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException
-from fastapi.params import Body
 from config.database import get_connection
 from pydantic import BaseModel, EmailStr, Field
 
@@ -68,6 +67,7 @@ async def create_contact(contacts: CreateContact):
 
         cursor.execute(query, values)
         conn.commit()
+
         new_id = cursor.lastrowid
         cursor.execute("SELECT * FROM contacts WHERE id = %s", (new_id,))
         create_contacts = cursor.fetchone()

@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException
-from fastapi.params import Body
 from config.database import get_connection
 from pydantic import BaseModel, Field
 
@@ -32,7 +31,6 @@ async def get_invoices():
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
 
 @router.get("/search_invoice")
 async def search_invoices(search: SearchInvoices):
@@ -84,7 +82,9 @@ async def create_invoices(invoices: InvoicesVerify ):
         cursor.execute(query, values)
         conn.commit()
 
-        create_invoice = cursor.fetchall()
+        new_id = cursor.lastrowid
+        cursor.execute("SELECT * FROM invoices WHERE id_company = %s", (new_id,))
+        create_invoice = cursor.fetchone()
 
         cursor.close()
         conn.close()
@@ -94,8 +94,6 @@ async def create_invoices(invoices: InvoicesVerify ):
     except Exception as e:
         conn.rollback()
         raise HTTPException(status_code=500, detail=str(e))
-
-
 
 @router.put("/update_invoice/{invoice_id}")
 async def update_invoices(invoice_id: int, invoices: InvoicesVerify ):
@@ -124,7 +122,6 @@ async def update_invoices(invoice_id: int, invoices: InvoicesVerify ):
     except Exception as e:
         conn.rollback()
         raise HTTPException(status_code=500, detail=str(e))
-
 
 @router.delete("/delete_invoice/{invoice_id}")
 async def delete_invoice(invoice_id: int, invoices: DeleteInvoices):
