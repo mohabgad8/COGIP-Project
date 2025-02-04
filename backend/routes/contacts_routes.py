@@ -56,6 +56,24 @@ async def search_contacts(search: SearchContact):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@router.get("/get_last_contacts")
+async def get_last_contacts():
+    try:
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT contacts.name, contacts.phone, contacts.email, companies.name AS company_name, companies.created_at FROM contacts LEFT JOIN companies ON contacts.company_id = companies.id ORDER BY created_at DESC LIMIT 5")
+
+        get_last_contact = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return get_last_contact
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @router.post("/add_contact")
 async def create_contact(contacts: CreateContact):
     try:
