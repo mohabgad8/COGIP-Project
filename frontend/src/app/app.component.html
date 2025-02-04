@@ -1,16 +1,5 @@
 <app-header/>
-<app-banner/>
-<section class="section_tables">
-<h2>Last invoices</h2>
-<app-list [column]="invoiceColumn" />
-</section>
-<section class="section_tables">
-<h2>Last contacts</h2>
-<app-list [column]="contactsColumn" />
-</section>
-<section class="section_tables">
-<h2>Last companies</h2>
-<app-list [column]="companiesColumn" />
-</section>
-<app-info/>
+<router-outlet></router-outlet>
 <app-footer/>
+
+
