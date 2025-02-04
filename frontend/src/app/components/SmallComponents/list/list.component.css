@@ -5,6 +5,20 @@
   margin: auto;
 }
 
+.search_bar {
+  height: 53px;
+  border-radius: 10px;
+  color: #636363;
+  float:right;
+  margin-bottom: 43px;
+}
+
+input[type="search"]{
+   padding-left: 16px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
 h2{
   margin-left: 8px;
   margin-bottom: 5.063rem;
