@@ -1,5 +1,9 @@
 <h2>{{ title }}</h2>
+
+<ng-container *ngIf="showSearchBar">
 <input class="search_bar" type="search" placeholder="Search company">
+</ng-container>
+
 <table class="table_column">
   <thead class="thead_column">
     <tr>
