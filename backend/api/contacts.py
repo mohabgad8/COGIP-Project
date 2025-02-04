@@ -1,8 +1,15 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.params import Body
-from config.database import get_connection
+from core.database import get_connection
+from pydantic import BaseModel, EmailStr, Field
 
 router = APIRouter()
+
+class ContactVerify(BaseModel):
+    name : str = Field(min_length=2, max_length=50)
+    company_id : int
+    email : EmailStr = Field(min_length=3, max_length=50)
+    phone : str = Field(min_length=10, max_length=50)
 
 @router.get("/get_contact")
 
@@ -26,18 +33,19 @@ async def get_contact():
 
 @router.post("/add_contact")
 
-async def create_contact(contacts: dict = Body(...) ):
+async def create_contact(contacts: ContactVerify):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
         query = "INSERT INTO contacts (name, company_id, email, phone) VALUES (%s, %s, %s, %s)"
-        values = (contacts['name'], contacts['company_id'], contacts['email'], contacts['phone'])
+        values = (contacts.name, contacts.company_id, contacts.email, contacts.phone)
 
         cursor.execute(query, values)
         conn.commit()
-
-        create_contacts = cursor.fetchall()
+        new_id = cursor.lastrowid
+        cursor.execute("SELECT * FROM contacts WHERE id = %s", (new_id,))
+        create_contacts = cursor.fetchone()
 
         cursor.close()
         conn.close()

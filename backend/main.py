@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from routes.companies_routes import router as companies_router
-from routes.contacts_routes import router as contacts_router
-from routes.invoices_routes import router as invoices_router
-from routes.users_routes import router as users_router
+from api.companies import router as companies_router
+from api.contacts import router as contacts_router
+from api.invoices import router as invoices_router
+from api.users import router as users_router
 app = FastAPI()
 
 app.include_router(
