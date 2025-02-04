@@ -1,4 +1,17 @@
+.tableaux {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
 
+h2{
+  margin-left: 8px;
+  margin-bottom: 5.063rem;
+  font-weight: 900;
+  font-size: 60px;
+  font-family: Inter;
+}
 table {
   width:100%;
   border-collapse: collapse;
@@ -11,9 +24,11 @@ table {
   font-family: Roboto;
   font-weight: 600;
   font-size: 20px;
+  min-width: 150px ;
   width: fit-content;
   background: #F9DE4E;
   text-align: left;
+
 }
 
 .tr_column {
@@ -53,3 +68,5 @@ th, td {
 td:last-child {
   width: 100%;
 }
+
+
