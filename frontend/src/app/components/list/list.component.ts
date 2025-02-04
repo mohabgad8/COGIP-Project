@@ -5,7 +5,7 @@ import {NgForOf} from '@angular/common';
 @Component({
   selector: 'app-list',
   imports: [
-    NgForOf
+    NgForOf,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
