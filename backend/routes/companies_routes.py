@@ -4,7 +4,7 @@ from config.database import get_connection
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("/get_companies")
 
 async def get_companies():
     try:
