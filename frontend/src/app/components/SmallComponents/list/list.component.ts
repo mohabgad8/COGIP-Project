@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, input, Input} from '@angular/core';
 import {NgForOf} from '@angular/common';
 
 
@@ -8,10 +8,11 @@ import {NgForOf} from '@angular/common';
     NgForOf,
   ],
   templateUrl: './list.component.html',
+  standalone: true,
   styleUrl: './list.component.css'
 })
 export class ListComponent {
-
+  @Input() title: string | undefined;
   @Input() column: {key: string, label: string}[] = [];
   @Input() data: any[] = [];
 

@@ -1,23 +1,26 @@
 .section_info {
   display: flex;
   justify-content: space-between;
-  width: 81.875rem;
+  width: 90.984%;
   height: 432px;
-  margin-left: 8.114rem;
+  margin-left:9.016%;
   margin-top: 86px;
+  margin-bottom: 147px;
 }
 
 .text_info {
   font-size: 68px;
   font-weight: 900;
+  font-family: Inter;
   margin-top: 104px;
+  margin-right: 1.927%;
 }
 
 .image_info {
   width: 48.188rem;
   height: 27.125rem;
   margin-top: 1.563rem;
-  background-image: url("../../../assets/images/Rectangle_17.png");
+  background-image: url("../../../../assets/images/Rectangle_17.png");
   background-repeat: no-repeat;
 }
 
@@ -27,6 +30,6 @@
   margin-left: 13.318rem;
   position: relative;
   bottom: 1.563rem;
-/*  background-image: url("../../../assets/images/DrawKit_Vector_Illustration.png");
-  background-repeat: no-repeat; */
+  background-image: url("../../../../assets/images/DrawKit_Vector_Illustration.png");
+  background-repeat: no-repeat;
 }

@@ -1,15 +1,5 @@
 <app-header/>
-<section class="section_tables">
-<h2>{{ title[0] }}</h2>
-<app-list [column]="invoiceColumn" />
-</section>
-<section class="section_tables">
-<h2>{{ title[1] }}</h2>
-<app-list [column]="contactsColumn" />
-</section>
-<section class="section_tables">
-<h2>{{ title[2] }}</h2>
-<app-list [column]="companiesColumn" />
-</section>
-<app-info/>
-<app-contact [contact]="contact"/>
+<router-outlet></router-outlet>
+<app-footer/>
+
+

@@ -1,0 +1,32 @@
+.banner {
+  height: 500px;
+  background: #F9DE4E;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 52px;
+  width: 100%;
+  position: relative;
+  bottom: 1px;
+
+  .titleandimg{
+    width: calc(100% - 251px);
+    height: 500px;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+  h1{
+    margin-left: 22px;
+    display: inline-block;
+    white-space: nowrap;
+
+
+  }
+  img {
+    position: relative;
+    left: 50px;
+    bottom: 100px;
+    
+
+  }
+}
+}
