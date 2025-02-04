@@ -5,14 +5,14 @@ from config.database import get_connection
 router = APIRouter()
 
 
-@router.get("/get_invoices")
+@router.get("/get_all_invoices")
 
 async def get_invoices():
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT * FROM invoices")
+        cursor.execute("SELECT invoices.ref, invoices.created_at, companies.name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id")
 
         get_invoice = cursor.fetchall()
 
