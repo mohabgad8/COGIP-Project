@@ -5,20 +5,24 @@ from pydantic import BaseModel, EmailStr, Field
 
 router = APIRouter()
 
-class ContactVerify(BaseModel):
+class CreateContact(BaseModel):
     name : str = Field(min_length=2, max_length=50)
     company_id : int
     email : EmailStr = Field(min_length=3, max_length=50)
     phone : str = Field(min_length=10, max_length=50)
 
-@router.get("/get_contact")
+class SearchContact(BaseModel):
+    name : str = Field(min_length=2, max_length=50)
+
+
+@router.get("/get_all_contact")
 
 async def get_contact():
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT * FROM contacts")
+        cursor.execute("SELECT contacts.name, contacts.phone, contacts.email, companies.name AS company_name, companies.created_at FROM contacts LEFT JOIN companies ON contacts.company_id = companies.id")
 
         get_contacts = cursor.fetchall()
 
@@ -33,7 +37,7 @@ async def get_contact():
 
 @router.post("/add_contact")
 
-async def create_contact(contacts: ContactVerify):
+async def create_contact(contacts: CreateContact):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
@@ -59,7 +63,7 @@ async def create_contact(contacts: ContactVerify):
 
 @router.put("/update_contact/{contacts_id}")
 
-async def update_contact(contacts_id: int, contacts: dict = Body(...) ):
+async def update_contact(contacts_id: int, contacts: CreateContact ):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
@@ -69,7 +73,7 @@ async def update_contact(contacts_id: int, contacts: dict = Body(...) ):
             raise HTTPException(status_code=404, detail="Contact non trouvé")
 
         query = "UPDATE contacts SET name = %s, company_id = %s, email = %s, phone = %s WHERE id = %s"
-        values = (contacts['name'], contacts['company_id'], contacts['email'], contacts['phone'], contacts_id)
+        values = (contacts.name, contacts.company_id, contacts.email, contacts.phone, contacts_id)
 
         cursor.execute(query, values)
         conn.commit()
