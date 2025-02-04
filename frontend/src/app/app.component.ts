@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import {HeaderComponent} from './components/header/header.component';
 import {ListComponent} from './components/list/list.component';
 import {InfoComponent} from './components/info/info.component';
+import {ContactComponent} from './components/contact/contact.component';
 
 
 @Component({
   selector: 'app-root',
   standalone:true,
-  imports: [HeaderComponent, ListComponent, InfoComponent],
+  imports: [HeaderComponent, ListComponent, InfoComponent, ContactComponent],
   templateUrl:'app.component.html',
   styleUrl: 'app.component.css'
 })
@@ -62,5 +63,22 @@ export class AppComponent {
       key: "create at", label: "Create at"
     }
   ]
+
+    title: string[] = ['Last invoices', 'last contacts', 'Last companies', 'All invoices', 'All contacts', 'All companies', 'PIED PIPPER', 'Last invoices','Bertram Gilfoyle'];
+
+    contact = [
+      {
+        key: "Name", label: "Pied Pipper"
+      },
+      {
+        key: "TVA", label: "BE87 876 767 565"
+      },
+      {
+        key: "Country", label: "Belgium"
+      },
+      {
+        key: "type", label: "Supplier"
+      }
+      ];
 
 }
