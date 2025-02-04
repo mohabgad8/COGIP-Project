@@ -1,0 +1,19 @@
+<h2>{{ title }}</h2>
+<table class="table_column">
+  <thead class="thead_column">
+    <tr>
+      <th class="th_column" *ngFor="let col of column">{{ col.label }}</th>
+    </tr>
+  </thead>
+  <tbody>
+     <tr class="tr_column" *ngFor="let row of data">
+      <td class="td_column" *ngFor="let col of column">
+        {{ row[col.key] }}
+    </tr>
+    <tr class="tr_column">
+      <td></td>
+
+    </tr>
+  </tbody>
+</table>
+
