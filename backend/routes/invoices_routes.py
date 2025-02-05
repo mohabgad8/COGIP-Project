@@ -55,20 +55,20 @@ async def get_invoice(ref_invoice: GetInvoice):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@router.get("/get_all_invoices", response_model=Page[GetAllInvoices])
-async def get_invoices(params: Params = Params()):
+@router.get("/get_all_invoices")
+async def get_invoices():
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT invoices.ref, invoices.created_at, companies.name AS company_name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id LIMIT 10")
+        cursor.execute("SELECT invoices.ref, invoices.created_at, companies.name AS company_name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id")
 
         get_invoice = cursor.fetchall()
 
         cursor.close()
         conn.close()
 
-        return paginate(get_invoice, params)
+        return get_invoice
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
