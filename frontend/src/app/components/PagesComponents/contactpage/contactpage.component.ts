@@ -25,10 +25,10 @@ export class ContactpageComponent implements OnInit{
       key: "email", label: "Mail"
     },
     {
-      key: "company", label: "Company"
+      key: "company_name", label: "Company"
     },
     {
-      key: "create at", label: "Created at"
+      key: "created_at", label: "Created at"
     }
   ]
 

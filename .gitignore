@@ -1,9 +1,10 @@
-.env
+backend/.env
 .idea
 node_modules
-venv/
+backend/venv/
 python
-get-pip.py
+backend/get-pip.py
 .idea/Cogip Project.iml
 .idea/misc.xml
 .idea/workspace.xml
+backend/__init__.py

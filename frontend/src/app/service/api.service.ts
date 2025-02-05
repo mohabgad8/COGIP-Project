@@ -13,11 +13,19 @@ export class ApiService {
 
 
   getContact(): Observable<any> {
-    return this.http.get<any[]>(`${this.apiUrl}/get_contact`);
+    return this.http.get<any[]>(`${this.apiUrl}/get_all_contacts`);
+  }
+
+   getLastContact(): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}/get_last_contacts`);
   }
 
   getInvoices(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/get_invoices`);
+    return this.http.get<any[]>(`${this.apiUrl}/get_all_invoices`);
+  }
+
+  getLastInvoices(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/get_last_invoices`);
   }
 
   getCompanies(): Observable<any[]> {

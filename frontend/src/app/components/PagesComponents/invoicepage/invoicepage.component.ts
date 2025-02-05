@@ -16,13 +16,13 @@ export class InvoicepageComponent implements OnInit{
   titleInvoices= 'All Invoices'
   invoiceColumn = [
     {
-      key: "invoice number", label: "Invoice number"
+      key: "ref", label: "Invoice number"
     },
     {
-      key: "dates due", label: "Dates due"
+      key: "ref", label: "Dates due"
     },
     {
-      key: "company", label: "Company"
+      key: "name", label: "Company"
     },
     {
       key: "created_at", label: "Created at"

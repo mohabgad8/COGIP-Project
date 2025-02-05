@@ -17,13 +17,13 @@ export class HomepageComponent implements OnInit {
   titleInvoices= 'Last Invoices'
   invoiceColumn = [
     {
-      key: "invoice number", label: "Invoice number"
+      key: "ref", label: "Invoice number"
     },
     {
-      key: "dates due", label: "Dates due"
+      key: "ref", label: "Dates due"
     },
     {
-      key: "company", label: "Company"
+      key: "name", label: "Company"
     },
     {
       key: "created_at", label: "Created at"
@@ -43,12 +43,14 @@ export class HomepageComponent implements OnInit {
       key: "email", label: "Mail"
     },
     {
-      key: "company", label: "Company"
+      key: "company_name", label: "Company"
     },
     {
-      key: "create at", label: "Created at"
+      key: "created_at", label: "Created at"
     }
   ]
+
+
 
   lastContactData: any[] = []
 
@@ -76,13 +78,14 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiService.getContact().subscribe((data: any[]) => {
+    this.apiService.getLastContact().subscribe((data: any[]) => {
       this.lastContactData = data;
       console.log(data)
     });
 
 
-    this.apiService.getInvoices().subscribe((data: any[]) => {
+
+    this.apiService.getLastInvoices().subscribe((data: any[]) => {
       this.lastInvoicesData = data;
       console.log(data)
     });
