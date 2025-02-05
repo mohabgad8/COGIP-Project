@@ -15,7 +15,9 @@
   <tbody>
      <tr class="tr_column" *ngFor="let row of data">
       <td class="td_column" *ngFor="let col of column">
-        {{ row[col.key] }}
+         <span *ngIf="col.key === 'created_at'">{{ formatDate(row[col.key]) }}</span>
+        <span *ngIf="col.key !== 'created_at'">{{ row[col.key] }}</span>
+
     </tr>
     <tr class="tr_column">
 

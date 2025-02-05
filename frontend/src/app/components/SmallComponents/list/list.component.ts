@@ -18,5 +18,9 @@ export class ListComponent {
   @Input() data: any[] = [];
 
   @Input() showSearchBar: boolean = false;
+  formatDate(date: any): string {
+    const d = new Date(date);
+    return d.toLocaleDateString('fr-FR');
 
+  }
 }
