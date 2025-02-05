@@ -1,8 +1,16 @@
 from fastapi import APIRouter, HTTPException
 from config.database import get_connection
 from pydantic import BaseModel, Field
+from datetime import datetime, date, time
+from fastapi_pagination import Page, add_pagination, paginate, Params
+# from fastapi_pagination import settings
 
 router = APIRouter()
+add_pagination(router)
+
+# settings.default_size = 10
+# settings.max_size = 10
+# settings.max_page = 10
 
 class InvoicesVerify(BaseModel):
     ref : str = Field(min_length=2, max_length=50)
@@ -16,6 +24,14 @@ class DeleteInvoices(BaseModel):
 
 class GetInvoice(BaseModel):
     ref : str = Field(min_length=2, max_length=50)
+
+class GetAllInvoices(BaseModel):
+    ref: str = Field(min_length=2, max_length=50)
+    created_at: datetime = Field(default_factory=datetime.now)
+    company_name: str = Field(min_length=2, max_length=50)
+
+    class Config:
+        from_attribute = True
 
 
 @router.get("/get_invoice")
@@ -39,20 +55,20 @@ async def get_invoice(ref_invoice: GetInvoice):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@router.get("/get_all_invoices")
-async def get_invoices():
+@router.get("/get_all_invoices", response_model=Page[GetAllInvoices])
+async def get_invoices(params: Params = Params()):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT invoices.ref, invoices.created_at, companies.name AS company_name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id")
+        cursor.execute("SELECT invoices.ref, invoices.created_at, companies.name AS company_name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id LIMIT 10")
 
         get_invoice = cursor.fetchall()
 
         cursor.close()
         conn.close()
 
-        return get_invoice
+        return paginate(get_invoice, params)
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
