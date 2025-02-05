@@ -1,3 +1,31 @@
 import { Routes } from '@angular/router';
+import {MainLayoutComponent} from './components/PagesComponents/main-layout/main-layout.component';
+import {HomepageComponent} from './components/PagesComponents/homepage/homepage.component';
+import {InvoicepageComponent} from './components/PagesComponents/invoicepage/invoicepage.component';
+import {ContactpageComponent} from './components/PagesComponents/contactpage/contactpage.component';
+import {CompaniespageComponent} from './components/PagesComponents/companiespage/companiespage.component';
+import {AlternativeLayoutComponent} from './components/PagesComponents/alternative-layout/alternative-layout.component';
+import {LoginpageComponent} from './components/PagesComponents/loginpage/loginpage.component';
+import {DashboardpageComponent} from './components/PagesComponents/dashboardpage/dashboardpage.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+   { path: '', pathMatch: 'full', redirectTo: 'home' },
+      {
+        path: '', component: MainLayoutComponent,
+        children: [
+          { path: 'home', component: HomepageComponent },
+          { path: 'invoices', component: InvoicepageComponent },
+          { path: 'contacts', component: ContactpageComponent },
+          { path: 'companies', component: CompaniespageComponent },
+        ]
+      },
+      {
+        path: '', component: AlternativeLayoutComponent,
+        children: [
+          { path: 'login', component: LoginpageComponent },
+          { path: 'dashboard', component: DashboardpageComponent }
+        ]
+      },
+      { path: '**', redirectTo: 'home' }
+    ]
+
