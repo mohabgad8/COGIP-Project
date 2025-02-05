@@ -14,13 +14,38 @@ class SearchInvoices(BaseModel):
 class DeleteInvoices(BaseModel):
     ref : str = Field(min_length=2, max_length=50)
 
+class GetInvoice(BaseModel):
+    ref : str = Field(min_length=2, max_length=50)
+
+
+@router.get("/get_invoice")
+async def get_invoice(ref_invoice: GetInvoice):
+    try:
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        query = "SELECT invoices.ref, companies.name AS company_name, invoices.created_at FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE invoices.ref = %s"
+        values = (ref_invoice.ref,)
+
+        cursor.execute(query, values)
+
+        get_one_invoice = cursor.fetchone()
+
+        cursor.close()
+        conn.close()
+
+        return get_one_invoice
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @router.get("/get_all_invoices")
 async def get_invoices():
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT invoices.ref, invoices.created_at, companies.name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id")
+        cursor.execute("SELECT invoices.ref, invoices.created_at, companies.name AS company_name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id")
 
         get_invoice = cursor.fetchall()
 
@@ -66,6 +91,27 @@ async def get_last_invoices():
         conn.close()
 
         return get_last_invoice
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/get_last_invoices_company/{company_name}")
+async def get_last_invoices_company(company_name : str):
+    try:
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        query = "SELECT invoices.ref, invoices.created_at, companies.name AS company_name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE companies.name = %s ORDER BY created_at DESC LIMIT 5"
+        values = (company_name,)
+
+        cursor.execute(query, values)
+
+        get_last_invoice_company = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return get_last_invoice_company
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
