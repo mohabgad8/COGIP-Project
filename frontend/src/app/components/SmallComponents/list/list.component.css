@@ -67,3 +67,9 @@ th, td {
 td:last-child {
   width: 100%;
 }
+
+h2 {
+  font-weight: 900;
+  font-size: 60px;
+  margin-top: 57px;
+}

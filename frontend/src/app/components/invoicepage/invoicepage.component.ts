@@ -5,7 +5,7 @@ import {ListComponent} from '../SmallComponents/list/list.component';
 @Component({
   selector: 'app-invoicepage',
   imports: [
-    ListComponent
+    ListComponent,
   ],
   standalone: true,
   templateUrl: './invoicepage.component.html',
