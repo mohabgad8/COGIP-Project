@@ -1,1 +1,5 @@
-<app-list [showSearchBar] = true [column]="companiesColumn" [data]="AllCompaniesData" [title]="titleCompanies" ></app-list>
+<app-list [showSearchBar]="true"
+          [column]="companiesColumn"
+          [data]="AllCompaniesData"
+          [title]="titleCompanies"
+          [itemsPerPage]="10">></app-list>

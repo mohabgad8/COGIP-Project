@@ -1,1 +1,7 @@
-<app-list [showSearchBar] = true [column]="invoiceColumn" [data]="AllInvoicesData" [title]="titleInvoices" ></app-list>
+<app-list [showSearchBar]="true"
+          [column]="invoiceColumn"
+          [data]="AllInvoicesData"
+          [title]="titleInvoices"
+          [itemsPerPage]="10">
+</app-list>
+

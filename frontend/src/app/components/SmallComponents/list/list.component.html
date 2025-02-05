@@ -1,29 +1,33 @@
 <section class="tableaux">
-<h2>{{ title }}</h2>
+  <h2>{{ title }}</h2>
 
-<div class="barrecontainer">
-<ng-container *ngIf="showSearchBar">
-<input class="search_bar" type="search" placeholder="Search company">
-</ng-container>
-</div>
-<table class="table_column">
-  <thead class="thead_column">
-    <tr>
-      <th class="th_column" *ngFor="let col of column">{{ col.label }}</th>
-    </tr>
-  </thead>
-  <tbody>
-     <tr class="tr_column" *ngFor="let row of data">
-      <td class="td_column" *ngFor="let col of column">
-         <span *ngIf="col.key === 'created_at'">{{ formatDate(row[col.key]) }}</span>
-        <span *ngIf="col.key !== 'created_at'">{{ row[col.key] }}</span>
+  <div class="barrecontainer" *ngIf="showSearchBar">
+    <input class="search_bar" type="search" placeholder="Search company" [(ngModel)]="searchTerm">
+  </div>
 
-    </tr>
-    <tr class="tr_column">
+  <table class="table_column">
+    <thead class="thead_column">
+      <tr>
+        <th class="th_column" *ngFor="let col of column">{{ col.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="tr_column" *ngFor="let row of filteredData">
+        <td class="td_column" *ngFor="let col of column">
+          <span *ngIf="col.key === 'created_at'">{{ formatDate(row[col.key])  }}</span>
+          <span *ngIf="col.key !== 'created_at'">{{ row[col.key] }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-
-    </tr>
-  </tbody>
-</table>
-  </section>
-
+  <div class="pagination" *ngIf="showPagination">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+    <button *ngFor="let page of [].constructor(totalPages()); let i = index"
+            (click)="goToPage(i + 1)"
+            [class.active]="currentPage === i + 1">
+      {{ i + 1 }}
+    </button>
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages()">Next</button>
+  </div>
+</section>

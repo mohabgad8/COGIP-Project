@@ -31,4 +31,10 @@ export class ApiService {
   getCompanies(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/get_companies`);
   }
+
+  searchInvoice(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/search_invoice`);
+  }
+
+
 }
