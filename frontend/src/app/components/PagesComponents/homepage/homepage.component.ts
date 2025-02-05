@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {BannerComponent} from '../SmallComponents/banner/banner.component';
-import {ListComponent} from '../SmallComponents/list/list.component';
-import {InfoComponent} from '../SmallComponents/info/info.component';
-import {ApiService} from '../../service/api.service';
+import {BannerComponent} from '../../SmallComponents/banner/banner.component';
+import {ListComponent} from '../../SmallComponents/list/list.component';
+import {InfoComponent} from '../../SmallComponents/info/info.component';
+import {ApiService} from '../../../service/api.service';
 
 
 @Component({

@@ -4,83 +4,88 @@
   width: 80%;
   margin: auto;
 }
-
-.search_bar {
-  height: 53px;
-  border-radius: 10px;
-  color: #636363;
-  float:right;
-  margin-bottom: 43px;
+.barrecontainer {
+  display: flex;
+  justify-content: flex-end;
 }
 
-input[type="search"]{
-   padding-left: 16px;
-  font-size: 16px;
-  font-weight: 300;
-}
+  .search_bar {
+    width: 240px;
+    height: 53px;
+    border-radius: 10px;
+    color: #636363;
+    margin-bottom: 43px;
+  }
 
-h2{
-  margin-left: 8px;
-  margin-bottom: 5.063rem;
-  font-weight: 900;
-  font-size: 60px;
-  font-family: Inter;
-}
-table {
-  width:100%;
-  border-collapse: collapse;
-  table-layout: auto;
-  margin-bottom: 86px;
-}
+  input[type="search"] {
+    padding-left: 16px;
+    font-size: 16px;
+    font-weight: 300;
+  }
 
-.th_column {
-  height: 3.438rem;
-  font-family: Roboto;
-  font-weight: 600;
-  font-size: 20px;
-  min-width: 150px ;
-  width: fit-content;
-  background: #F9DE4E;
-  text-align: left;
+  h2 {
+    margin-left: 8px;
+    margin-bottom: 5.063rem;
+    font-weight: 900;
+    font-size: 60px;
+    font-family: Inter;
+  }
 
-}
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    margin-bottom: 86px;
+  }
 
-.tr_column {
-  background: #F5F5F5;
-  width: 74.563rem;
-  height: 3.438rem;
-}
+  .th_column {
+    height: 3.438rem;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 20px;
+    min-width: 150px;
+    width: fit-content;
+    background: #F9DE4E;
+    text-align: left;
 
-tr:nth-child(even) {
-  background-color: white;
-}
+  }
 
-td {
-  text-align: left;
-  width: fit-content;
-  font-weight: 600;
-  font-size: 20px;
-  font-family: "Roboto", serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-}
+  .tr_column {
+    background: #F5F5F5;
+    width: 74.563rem;
+    height: 3.438rem;
+  }
+
+  tr:nth-child(even) {
+    background-color: white;
+  }
+
+  td {
+    text-align: left;
+    width: fit-content;
+    font-weight: 600;
+    font-size: 20px;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+  }
 
 
-th:first-child, td:first-child {
-  padding-left: 34px;
-}
+  th:first-child, td:first-child {
+    padding-left: 34px;
+  }
 
-th, td {
-  padding-right: 56px;
-  text-align: left;
-  white-space: nowrap;
-  min-width: 150px;
-}
+  th, td {
+    padding-right: 56px;
+    text-align: left;
+    white-space: nowrap;
+    min-width: 150px;
+  }
 
-td:last-child {
-  width: 100%;
-}
+  td:last-child {
+    width: 100%;
+  }
+
 
 
