@@ -28,12 +28,12 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/get_last_invoices`);
   }
 
+  //  getLastFiveInvoices(companyname: string): Observable<any[]> {
+  //   return this.http.get<any[]>(`${this.apiUrl}/get_last_invoices_company/${company_name}`);
+  // }
+
   getCompanies(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/get_companies`);
-  }
-
-  searchInvoice(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/search_invoice`);
   }
 
 

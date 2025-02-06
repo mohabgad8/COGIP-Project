@@ -3,12 +3,13 @@ import {BannerComponent} from '../../SmallComponents/banner/banner.component';
 import {ListComponent} from '../../SmallComponents/list/list.component';
 import {InfoComponent} from '../../SmallComponents/info/info.component';
 import {ApiService} from '../../../service/api.service';
-import {ContactComponent} from '../../SmallComponents/contact/contact.component';
+
+
 
 
 @Component({
   selector: 'app-homepage',
-  imports: [BannerComponent, ListComponent, InfoComponent, ContactComponent],
+  imports: [BannerComponent, ListComponent, InfoComponent],
   standalone: true,
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
