@@ -8,3 +8,4 @@ backend/get-pip.py
 .idea/misc.xml
 .idea/workspace.xml
 backend/__init__.py
+.env
