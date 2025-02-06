@@ -131,3 +131,5 @@ async def login_user(required_user: LoginRequest):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+    #test
