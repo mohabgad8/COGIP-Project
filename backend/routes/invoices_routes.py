@@ -55,7 +55,7 @@ async def get_invoices():
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT invoices.ref, invoices.created_at, companies.name AS company_name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id ORDER BY invoices.created_at DESC")
+        cursor.execute("SELECT invoices.ref, invoices.created_at, companies.name AS company_name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id ORDER BY created_at DESC")
 
         get_invoice = cursor.fetchall()
 
