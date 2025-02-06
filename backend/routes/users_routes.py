@@ -1,5 +1,6 @@
+import re
 from fastapi import HTTPException, APIRouter
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, validator, field_validator
 from config.database import get_connection, hash_password, verify_password
 
 router = APIRouter()
@@ -11,6 +12,25 @@ class User(BaseModel):
     last_name: str
     email: EmailStr
     password: str
+
+    @field_validator("password")
+    def validate_password(cls, value: str) -> str:
+
+        errors = []
+
+        if len(value) < 10:
+            errors.append("10 characters")
+        if not re.search(r"\d", value):
+            errors.append("a number")
+        if not re.search(r"[@$!%*?&]", value):
+            errors.append("a special character")
+
+        if errors:
+            raise ValueError(f"Password must contain at least {', '.join(errors)}.")
+
+        return value
+
+
 
 class LoginRequest(BaseModel):
     email: EmailStr
