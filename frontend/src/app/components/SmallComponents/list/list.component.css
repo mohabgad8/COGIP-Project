@@ -70,8 +70,11 @@
     font-style: normal;
     font-variation-settings: "wdth" 100;
   }
-
-
+.clickable {
+  cursor: pointer;
+  text-decoration: underline;
+  color: blue;
+}
   th:first-child, td:first-child {
     padding-left: 34px;
   }

@@ -36,7 +36,7 @@ export class CompaniespageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiService.getCompanies().subscribe((data: any[]) => {
+    this.apiService.fetchData('get_all_companies').subscribe((data: any[]) => {
         this.AllCompaniesData = data;
         console.log(data)
       }

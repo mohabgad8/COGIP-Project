@@ -1,0 +1,43 @@
+.main_contact {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: 251px;
+  z-index: 0;
+  display: flow-root;
+  position: relative;
+  left: 5%;
+}
+
+ .main_info {
+  font-size: 25px;
+  font-family: "Roboto", serif;
+}
+
+#hr_contact {
+  background: #F9DE4E;
+  height: 35px;
+  width: 31rem;
+  position: relative;
+  bottom: 35px;
+  margin-left: 27px;
+  border: none;
+  z-index: -1;
+  margin-bottom: 26px;
+}
+
+.title {
+  font-weight: bold;
+}
+
+h2 {
+  display: inline-block;
+  font-family: "inter";
+  padding-right: 10px;
+  font-weight: 900;
+  font-size: 60px;
+  line-height: 73px;
+  width: 31rem;
+}
+
+.info_contact {}

@@ -37,7 +37,7 @@ export class ContactpageComponent implements OnInit{
    constructor(private apiService: ApiService) {
   }
   ngOnInit() {
-    this.apiService.getContact().subscribe((data: any[]) => {
+    this.apiService.fetchData('get_last_contacts').subscribe((data: any[]) => {
       this.AllContactsData = data;
       console.log(data)
     });

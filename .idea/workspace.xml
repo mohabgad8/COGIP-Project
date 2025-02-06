@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ad0d364-9a6f-47a2-a373-a8c11a756bf5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Cogip Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Cogip Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/contactpage/contactpage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/contactpage/contactpage.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/homepage/homepage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/homepage/homepage.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/invoicepage/invoicepage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/invoicepage/invoicepage.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/api.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/dashboardpage/dashboardpage.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/dashboardpage/dashboardpage.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/dashboardpage/dashboardpage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/dashboardpage/dashboardpage.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/SmallComponents/list/list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/SmallComponents/list/list.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Max" />
+        <entry key="$PROJECT_DIR$" value="Farid" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,7 +41,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/AM-git-dev/COGIP-Project.git&quot;,
-    &quot;accountId&quot;: &quot;5ee570d5-d714-4e43-aa37-17000fd6e58e&quot;
+    &quot;accountId&quot;: &quot;6f32000a-a741-42c0-aeb4-a21d690903b0&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -54,22 +53,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "develop",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.language",
-    "ts.external.directory.path": "/Users/farid/Documents/becode/my-repo/PROJECTS/COGIP-Project/frontend/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Max&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\mix35\\PycharmProjects\\chasse\\Cogip Project\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mix35\PycharmProjects\chasse\Cogip Project\frontend\src" />
@@ -95,8 +94,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-PY-243.23654.177" />
-        <option value="bundled-python-sdk-91d3a02ef49d-43b77aa2d136-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.23654.177" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.18034.82" />
+        <option value="bundled-python-sdk-975db3bf15a3-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.18034.82" />
       </set>
     </attachedChunks>
   </component>
@@ -110,6 +109,7 @@
       <updated>1738142293133</updated>
       <workItem from="1738142294465" duration="11953000" />
       <workItem from="1738156690665" duration="3038000" />
+      <workItem from="1738785301871" duration="1347000" />
     </task>
     <servers />
   </component>

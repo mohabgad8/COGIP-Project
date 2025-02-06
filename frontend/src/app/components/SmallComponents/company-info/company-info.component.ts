@@ -2,15 +2,16 @@ import { Component, Input } from '@angular/core';
 import {NgForOf} from '@angular/common';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'app-company-info',
   imports: [
     NgForOf
   ],
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  templateUrl: './company-info.component.html',
+  standalone: true,
+  styleUrl: './company-info.component.css'
 })
 
-export class ContactComponent {
+export class CompanyInfoComponent {
 
   @Input() contact: {key: string, label: string}[] = [];
 

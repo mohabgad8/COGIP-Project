@@ -1,27 +1,35 @@
 <section class="tableaux">
-<h2>{{ title }}</h2>
+  <h2>{{ title }}</h2>
 
-<div class="barrecontainer">
-<ng-container *ngIf="showSearchBar">
-<input class="search_bar" type="search" placeholder="Search company">
-</ng-container>
-</div>
-<table class="table_column">
-  <thead class="thead_column">
-    <tr>
-      <th class="th_column" *ngFor="let col of column">{{ col.label }}</th>
-    </tr>
-  </thead>
-  <tbody>
-     <tr class="tr_column" *ngFor="let row of data">
-      <td class="td_column" *ngFor="let col of column">
-        {{ row[col.key] }}
-    </tr>
-    <tr class="tr_column">
+  <div class="barrecontainer" *ngIf="showSearchBar">
+    <input class="search_bar" type="search" placeholder="Search" [(ngModel)]="searchTerm">
+  </div>
 
+  <table class="table_column">
+    <thead class="thead_column">
+      <tr>
+        <th class="th_column" *ngFor="let col of column">{{ col.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="tr_column" *ngFor="let row of filteredData">
+        <td class="td_column" *ngFor="let col of column">
+          <span *ngIf="col.key === 'created_at'">{{ formatDate(row[col.key])  }}</span>
+          <span *ngIf="col.key === 'name'" (click)=goToContactDetails(row[col.key]) class="clickable"> {{ row[col.key] }}</span>
+          <span *ngIf="col.key === 'ref'" (click)=goToInvoiceDetails(row[col.key]) class="clickable"> {{ row[col.key] }}</span>
 
-    </tr>
-  </tbody>
-</table>
-  </section>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
+  <div class="pagination" *ngIf="showPagination">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+    <button *ngFor="let page of [].constructor(totalPages()); let i = index"
+            (click)="goToPage(i + 1)"
+            [class.active]="currentPage === i + 1">
+      {{ i + 1 }}
+    </button>
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages()">Next</button>
+  </div>
+</section>

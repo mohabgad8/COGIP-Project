@@ -5,6 +5,8 @@ import {InfoComponent} from '../../SmallComponents/info/info.component';
 import {ApiService} from '../../../service/api.service';
 
 
+
+
 @Component({
   selector: 'app-homepage',
   imports: [BannerComponent, ListComponent, InfoComponent],
@@ -55,6 +57,7 @@ export class HomepageComponent implements OnInit {
   lastContactData: any[] = []
 
   titleCompanies= 'Last Companies'
+
   companiesColumn = [
     {
       key: "name", label: "Name"
@@ -78,19 +81,19 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiService.getLastContact().subscribe((data: any[]) => {
+    this.apiService.fetchData('get_last_contacts').subscribe((data: any[]) => {
       this.lastContactData = data;
       console.log(data)
     });
 
 
 
-    this.apiService.getLastInvoices().subscribe((data: any[]) => {
+    this.apiService.fetchData('get_last_invoices').subscribe((data: any[]) => {
       this.lastInvoicesData = data;
       console.log(data)
     });
 
-    this.apiService.getCompanies().subscribe((data: any[]) => {
+    this.apiService.fetchData('get_last5_companies').subscribe((data: any[]) => {
       this.lastCompaniesData = data;
       console.log(data)
     });

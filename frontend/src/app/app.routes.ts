@@ -7,6 +7,8 @@ import {CompaniespageComponent} from './components/PagesComponents/companiespage
 import {AlternativeLayoutComponent} from './components/PagesComponents/alternative-layout/alternative-layout.component';
 import {LoginpageComponent} from './components/PagesComponents/loginpage/loginpage.component';
 import {DashboardpageComponent} from './components/PagesComponents/dashboardpage/dashboardpage.component';
+import {CompanyDetailsComponent} from './components/PagesComponents/company-details-page/company-details.component';
+import {ContactDetailsComponent} from './components/PagesComponents/contact-details-page/contact-details.component';
 
 export const routes: Routes = [
    { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -17,6 +19,9 @@ export const routes: Routes = [
           { path: 'invoices', component: InvoicepageComponent },
           { path: 'contacts', component: ContactpageComponent },
           { path: 'companies', component: CompaniespageComponent },
+          { path: 'companies/showCompany/:name', component: CompanyDetailsComponent },
+          { path: 'contacts/showContact/:name', component: ContactDetailsComponent }
+
         ]
       },
       {
