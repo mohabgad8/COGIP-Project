@@ -1,16 +1,10 @@
 from fastapi import APIRouter, HTTPException
 from config.database import get_connection
 from pydantic import BaseModel, Field
-from datetime import datetime, date, time
-from fastapi_pagination import Page, add_pagination, paginate, Params
-# from fastapi_pagination import settings
+from datetime import datetime
+
 
 router = APIRouter()
-add_pagination(router)
-
-# settings.default_size = 10
-# settings.max_size = 10
-# settings.max_page = 10
 
 class InvoicesVerify(BaseModel):
     ref : str = Field(min_length=2, max_length=50)
@@ -61,7 +55,7 @@ async def get_invoices():
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT invoices.ref, invoices.created_at, companies.name AS company_name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id")
+        cursor.execute("SELECT invoices.ref, invoices.created_at, companies.name AS company_name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id ORDER BY invoices.created_at DESC")
 
         get_invoice = cursor.fetchall()
 

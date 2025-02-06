@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ad0d364-9a6f-47a2-a373-a8c11a756bf5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/contactpage/contactpage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/contactpage/contactpage.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/homepage/homepage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/homepage/homepage.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/invoicepage/invoicepage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/invoicepage/invoicepage.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/api.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/contacts_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/contacts_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/invoices_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/invoices_routes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Max" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,7 +56,7 @@
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "Farid",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -111,9 +108,22 @@
       <workItem from="1738142294465" duration="11953000" />
       <workItem from="1738156690665" duration="3038000" />
     </task>
+    <task id="LOCAL-00001" summary="merge front and back">
+      <option name="closed" value="true" />
+      <created>1738746443292</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738746443292</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="merge front and back" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge front and back" />
   </component>
 </project>
