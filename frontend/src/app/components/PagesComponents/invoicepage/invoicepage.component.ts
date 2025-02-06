@@ -24,7 +24,7 @@ export class InvoicepageComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.apiService.getInvoices().subscribe((data: any[]) => {
+    this.apiService.fetchData('get_all_invoices').subscribe((data: any[]) => {
       this.AllInvoicesData = data;
       console.log(data);
     });

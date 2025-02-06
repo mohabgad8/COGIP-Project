@@ -19,8 +19,8 @@ export const routes: Routes = [
           { path: 'invoices', component: InvoicepageComponent },
           { path: 'contacts', component: ContactpageComponent },
           { path: 'companies', component: CompaniespageComponent },
-          { path: 'companies/showcompany', component: CompanyDetailsComponent },
-          { path: 'contacts/showcontact', component: ContactDetailsComponent }
+          { path: 'companies/showCompany/:name', component: CompanyDetailsComponent },
+          { path: 'contacts/showContact/:name', component: ContactDetailsComponent }
 
         ]
       },

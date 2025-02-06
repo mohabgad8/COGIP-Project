@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import {NgForOf, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
@@ -23,6 +24,21 @@ export class ListComponent {
 
   searchTerm: string = '';
   currentPage: number = 1;
+
+constructor(private router: Router) {
+}
+
+goToCompanyDetails(companyName: string) {
+  this.router.navigate(['/companies/showCompany/', companyName])
+}
+
+goToInvoiceDetails(invoiceNumber: string) {
+  this.router.navigate(['/invoices/showInvoice/', invoiceNumber])
+}
+
+goToContactDetails(contactName: string) {
+  this.router.navigate(['/contacts/showContact/',contactName])
+}
 
 
     formatDate(date: any): string {

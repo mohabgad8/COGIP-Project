@@ -21,7 +21,7 @@ export class CompanyDetailsComponent implements OnInit{
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.apiService.getLastFiveInvoices().subscribe((data: any[]) => {
+    this.apiService.fetchData('get_last_invoices').subscribe((data: any[]) => {
       this.LastFiveInvoicesData = data;
       console.log(data);
     });

@@ -15,7 +15,9 @@
       <tr class="tr_column" *ngFor="let row of filteredData">
         <td class="td_column" *ngFor="let col of column">
           <span *ngIf="col.key === 'created_at'">{{ formatDate(row[col.key])  }}</span>
-          <span *ngIf="col.key !== 'created_at'">{{ row[col.key] }}</span>
+          <span *ngIf="col.key === 'name'" (click)=goToContactDetails(row[col.key]) class="clickable"> {{ row[col.key] }}</span>
+          <span *ngIf="col.key === 'ref'" (click)=goToInvoiceDetails(row[col.key]) class="clickable"> {{ row[col.key] }}</span>
+
         </td>
       </tr>
     </tbody>

@@ -7,6 +7,7 @@ import {NgForOf} from '@angular/common';
     NgForOf
   ],
   templateUrl: './company-info.component.html',
+  standalone: true,
   styleUrl: './company-info.component.css'
 })
 
