@@ -24,7 +24,7 @@ app.include_router(
 
 app.include_router(
     users_router,
-    prefix="/user"
+    prefix="/users"
 )
 
 # @app.get("/")
