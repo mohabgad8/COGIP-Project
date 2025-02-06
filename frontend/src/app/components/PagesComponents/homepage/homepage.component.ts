@@ -20,7 +20,7 @@ export class HomepageComponent implements OnInit {
       key: "ref", label: "Invoice number"
     },
     {
-      key: "ref", label: "Dates due"
+      key: "date_due", label: "Dates due"
     },
     {
       key: "name", label: "Company"

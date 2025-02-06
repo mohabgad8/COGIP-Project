@@ -7,7 +7,7 @@ from datetime import datetime, date
 router = APIRouter()
 
 class InvoicesVerify(BaseModel):
-    ref : str = Field(min_length=2, max_length=50)
+    date_due : str = Field(min_length=2, max_length=50)
     id_company : int
 
 class SearchInvoices(BaseModel):
@@ -73,8 +73,8 @@ async def search_invoices(search: SearchInvoices):
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        query = "SELECT invoices.ref, invoices.date_due, companies.name, invoices.created_at FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE companies.name AS company_name = %s"
-        values = (search.name, )
+        query = "SELECT invoices.ref, invoices.date_due, companies.name, invoices.created_at FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE companies.name = %s"
+        values = (search.companies.name, )
 
         cursor.execute(query, values)
         search_invoice = cursor.fetchall()
@@ -132,13 +132,22 @@ async def create_invoices(invoices: InvoicesVerify ):
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        query = "INSERT INTO invoices (date_due, id_company) VALUES (%s, %s)"
-        values = (invoices.date_due, invoices.id_company)
+        query = "INSERT INTO invoices (date_due, id_company, ref) VALUES (%s, %s, %s)"
+        values = (invoices.date_due, invoices.id_company, None)
 
         cursor.execute(query, values)
         conn.commit()
 
         new_id = cursor.lastrowid
+        date_part = datetime.strptime(invoices.date_due, "%Y-%m-%d").strftime("%Y%m%d")
+        invoice_reference = f"F{date_part}-{new_id:04d}"
+
+        update_query ="UPDATE invoices SET ref = %s where invoices.id = %s"
+        values = (invoice_reference, new_id,)
+        cursor.execute(update_query, values)
+        conn.commit()
+
+
         cursor.execute("SELECT * FROM invoices WHERE id_company = %s", (new_id,))
         create_invoice = cursor.fetchone()
 
