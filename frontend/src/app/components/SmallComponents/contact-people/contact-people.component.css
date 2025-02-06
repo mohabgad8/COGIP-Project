@@ -1,0 +1,39 @@
+.contact_main_box {
+  display: flex;
+  width: 100%;
+  margin-left: 9%;
+  height: auto;
+  flex-direction: column;
+}
+
+.every_contact {
+  display: flex;
+  margin-bottom: 84px;
+}
+
+h2 {
+  font-size: 60px;
+  font-weight: 900;
+  font-family: "Inter", serif;
+  line-height: 72.61px;
+  margin-bottom: 65px;
+}
+
+.main_contact_people {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 23.5rem;
+  height: 193px;
+  background: #F5F5F5;
+  border-radius: 32px;
+  box-shadow: 0 0 60px -29px #00000040;
+  margin-right: 3.313rem;
+}
+
+h3 {
+  font-family: "Roboto", serif;
+  font-weight: 900;
+  font-size: 35px;
+  line-height: 41px;
+}

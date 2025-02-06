@@ -4,11 +4,12 @@ import {ListComponent} from '../../SmallComponents/list/list.component';
 import {InfoComponent} from '../../SmallComponents/info/info.component';
 import {ApiService} from '../../../service/api.service';
 import {ContactComponent} from '../../SmallComponents/contact/contact.component';
+import {ContactPeopleComponent} from '../../SmallComponents/contact-people/contact-people.component';
 
 
 @Component({
   selector: 'app-homepage',
-  imports: [BannerComponent, ListComponent, InfoComponent, ContactComponent],
+  imports: [BannerComponent, ListComponent, InfoComponent, ContactComponent, ContactPeopleComponent],
   standalone: true,
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
