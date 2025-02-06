@@ -148,7 +148,7 @@ async def create_invoices(invoices: InvoicesVerify ):
         conn.commit()
 
 
-        cursor.execute("SELECT * FROM invoices WHERE id_company = %s", (new_id,))
+        cursor.execute("SELECT * FROM invoices WHERE ref = %s", (invoice_reference,))
         create_invoice = cursor.fetchone()
 
         cursor.close()
