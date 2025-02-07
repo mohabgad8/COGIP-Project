@@ -19,7 +19,7 @@ export const routes: Routes = [
           { path: 'invoices', component: InvoicepageComponent },
           { path: 'contacts', component: ContactpageComponent },
           { path: 'companies', component: CompaniespageComponent },
-          { path: 'companies/showCompany/:name', component: CompanyDetailsComponent },
+          { path: 'companies/showCompany/:companyName', component: CompanyDetailsComponent },
           { path: 'contacts/showContact/:name', component: ContactDetailsComponent }
 
         ]

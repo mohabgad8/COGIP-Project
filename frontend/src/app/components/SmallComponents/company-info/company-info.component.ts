@@ -13,6 +13,5 @@ import {NgForOf} from '@angular/common';
 
 export class CompanyInfoComponent {
 
-  @Input() contact: {key: string, label: string}[] = [];
-
+  @Input() contact: { key: string, label: string }[] = [];
 }
