@@ -148,7 +148,6 @@ async def delete_company(company: DeleteCompany):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-
 @router.get("/get_total_companies")
 async def get_total_companies():
     try:
