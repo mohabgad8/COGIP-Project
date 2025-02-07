@@ -18,7 +18,14 @@
           <span *ngIf="col.label === 'Company'" (click)=goToCompanyDetails(row[col.key]) class="clickable"> {{ row[col.key] }}</span>
           <span *ngIf="col.label === 'Invoice number'" (click)=goToInvoiceDetails(row[col.key]) class="clickable"> {{ row[col.key] }}</span>
           <span *ngIf="col.label === 'Name'" (click)=goToContactDetails(row[col.key]) class="clickable">{{ row[col.key] }}</span>
-           <span *ngIf="col.label === 'Dates due'">{{ row[col.key] }}</span>
+          <span *ngIf="col.label === 'Dates'">{{ row[col.key] }}</span>
+          <span *ngIf="col.label === 'Invoice Number'">{{ row[col.key] }}</span>
+          <span *ngIf="col.label === 'Phone'">{{ row[col.key] }}</span>
+          <span *ngIf="col.label === 'Dates due'">{{ row[col.key] }}</span>
+          <span *ngIf="col.label === 'TVA'">{{ row[col.key] }}</span>
+          <span *ngIf="col.label === 'Country'">{{ row[col.key] }}</span>
+          <span *ngIf="col.label === 'Type'">{{ row[col.key] }}</span>
+          <span *ngIf="col.label === 'Mail'">{{ row[col.key] }}</span>
 
         </td>
       </tr>

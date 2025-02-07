@@ -1,0 +1,30 @@
+<section class="main_contact">
+
+  <h2 class="title" *ngIf="companyData; else contactSection">
+    {{ companyData?.name || "Details" }}
+  </h2>
+
+
+  <ng-template #contactSection>
+    <h2 class="title" *ngIf="contactData">
+      {{ contactData?.name || "Contact Details" }}
+    </h2>
+  </ng-template>
+
+  <hr id="hr_contact">
+
+
+  <section class="main_info">
+    <ng-container *ngIf="companyData">
+      <p class="info_contact" *ngFor="let category of companycategories">
+        <strong>{{ category.label }}:</strong> {{ companyData?.[category.key] || 'N/A' }}
+      </p>
+    </ng-container>
+
+    <ng-container *ngIf="contactData">
+      <p class="info_contact" *ngFor="let category of contactcategories">
+        <strong>{{ category.label }}:</strong> {{ contactData?.[category.key] || 'N/A' }}
+      </p>
+    </ng-container>
+  </section>
+</section>
