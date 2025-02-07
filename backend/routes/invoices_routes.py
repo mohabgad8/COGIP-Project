@@ -138,20 +138,20 @@ async def create_invoices(invoices: InvoicesVerify ):
         conn.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
-@router.put("/update_invoice/{date_due}")
-async def update_invoices(date_due: date, invoices: InvoicesVerify ):
+@router.put("/update_invoice/{invoice_ref}")
+async def update_invoices(invoice_ref: str, invoices: InvoicesVerify ):
     try:
-        cursor.execute("SELECT * FROM invoices WHERE date_due = %s", (date_due,))
+        cursor.execute("SELECT * FROM invoices WHERE ref = %s", (invoice_ref,))
         if not cursor.fetchone():
             raise HTTPException(status_code=404, detail="Facture non trouvée")
 
-        query = "UPDATE invoices SET ref = %s, id_company = %s WHERE date_due = %s"
-        values = (invoices.ref, invoices.id_company, date_due)
+        query = "UPDATE invoices SET ref = %s, id_company = %s WHERE ref = %s"
+        values = (invoices.ref, invoices.id_company, invoice_ref)
 
         cursor.execute(query, values)
         conn.commit()
 
-        cursor.execute ("SELECT * FROM invoices WHERE date_due = %s", (date_due,))
+        cursor.execute ("SELECT * FROM invoices WHERE ref = %s", (invoice_ref,))
         update_invoice = cursor.fetchone()
 
         return update_invoice
@@ -160,15 +160,15 @@ async def update_invoices(date_due: date, invoices: InvoicesVerify ):
         conn.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
-@router.delete("/delete_invoice/{date_due}")
-async def delete_invoice(date_due: date, invoices: DeleteInvoices):
+@router.delete("/delete_invoice/{ref_invoice}")
+async def delete_invoice(ref_invoice: str):
     try:
-        cursor.execute("SELECT * FROM invoices WHERE date_due = %s", (date_due,))
+        cursor.execute("SELECT * FROM invoices WHERE ref = %s", (ref_invoice,))
         if not cursor.fetchone():
             raise HTTPException(status_code=404, detail="Facture non trouvée")
 
         query = "DELETE FROM invoices WHERE ref = %s"
-        values = (invoices.ref,)
+        values = (ref_invoice,)
 
         cursor.execute(query, values)
         conn.commit()
