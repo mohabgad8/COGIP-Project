@@ -17,7 +17,7 @@ class DeleteInvoices(BaseModel):
     ref : str = Field(min_length=2, max_length=50)
 
 class GetInvoice(BaseModel):
-    ref : str = Field(min_length=2, max_length=50)
+    id : int = Field(min_length=2, max_length=50)
 
 class GetAllInvoices(BaseModel):
     ref: str = Field(min_length=2, max_length=50)
@@ -29,13 +29,13 @@ class GetAllInvoices(BaseModel):
 
 
 @router.get("/get_invoice")
-async def get_invoice(ref_invoice: GetInvoice):
+async def get_invoice(id_invoice: GetInvoice):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        query = "SELECT invoices.ref, companies.name AS company_name, invoices.created_at FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE invoices.ref = %s"
-        values = (ref_invoice.ref,)
+        query = "SELECT invoices.ref, companies.name AS company_name, invoices.created_at FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE invoices.id = %s"
+        values = (id_invoice.id,)
 
         cursor.execute(query, values)
 
@@ -140,15 +140,15 @@ async def create_invoices(invoices: InvoicesVerify ):
 
         new_id = cursor.lastrowid
         date_part = datetime.strptime(invoices.date_due, "%Y-%m-%d").strftime("%Y%m%d")
-        invoice_reference = f"F{date_part}-{new_id:04d}"
+        invoice_ref = f"F{date_part}-{new_id:04d}"
 
         update_query ="UPDATE invoices SET ref = %s where invoices.id = %s"
-        values = (invoice_reference, new_id,)
+        values = (invoice_ref, new_id,)
         cursor.execute(update_query, values)
         conn.commit()
 
 
-        cursor.execute("SELECT * FROM invoices WHERE ref = %s", (invoice_reference,))
+        cursor.execute("SELECT * FROM invoices WHERE ref = %s", (invoice_ref,))
         create_invoice = cursor.fetchone()
 
         cursor.close()
