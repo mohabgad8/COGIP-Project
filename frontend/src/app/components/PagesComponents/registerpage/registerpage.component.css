@@ -1,0 +1,78 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#register_title {
+  font-family: "Roboto", serif;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  font-size: 3rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 72px;
+  width: 100%;
+  background: #F9DE4E;
+  justify-content: space-between;
+}
+
+#title {
+  font-family: Roboto;
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 56.25px;
+  margin-left: 2rem;
+}
+
+#login {
+  margin-right: 2rem;
+  color: black;
+}
+
+a{
+  width: 102px;
+  height: 37px;
+  text-align: center;
+  line-height: 37px;
+}
+
+#login:hover {
+  border-radius: 10px;
+  background: white;
+}
+
+/* input */
+
+input {
+  height: 52px;
+  width: 26rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-indent: 10px;
+  padding-block: 1px;
+  padding-inline: 2px;
+}
+
+/* submit */
+
+.submit {
+  border-radius: 16px;
+  background: #F9DE4E;
+}
