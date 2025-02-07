@@ -6,8 +6,6 @@ router = APIRouter()
 db = get_connection()
 cursor = db.cursor(dictionary = True)
 
-class RequiredCompany(BaseModel):
-    name: str
 
 class NewCompany(BaseModel):
     name: str
@@ -25,21 +23,21 @@ class DeleteCompany(BaseModel):
     name: str
 
 # get all companies' infos
-@router.get("/get_company")
-async def get_company(required_company: RequiredCompany):
+@router.get("/get_company/{company_name}")
+async def get_company(company_name: str):
     try:
         # get required_company's infos + type
         query = """
-            SELECT companies.id, companies.name, companies.country, companies.tva, companies.created_at, types.name AS type
+            SELECT  companies.name, companies.country, companies.tva, types.name AS type
             FROM companies
             LEFT JOIN types ON companies.type_id = types.id
             WHERE companies.name = %s
         """
-        values = (required_company.name,)
+        values = (company_name,)
         cursor.execute(query, values)
         fetched_company = cursor.fetchall()
 
-        return {"companies: ": fetched_company}
+        return fetched_company
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

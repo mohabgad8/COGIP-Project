@@ -10,8 +10,8 @@ class CreateContact(BaseModel):
     email : EmailStr = Field(min_length=3, max_length=50)
     phone : str = Field(min_length=10, max_length=50)
 
-class SearchContact(BaseModel):
-    name : str = Field(min_length=2, max_length=50)
+# class SearchContact(BaseModel):
+#     name : str = Field(min_length=2, max_length=50)
 
 
 class DeleteContact(BaseModel):
@@ -37,14 +37,14 @@ async def get_contact():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/search_contact")
-async def search_contacts(search: SearchContact):
+@router.get("/get_contact/{contact_name}")
+async def get_contact(contact_name: str):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        query = "SELECT contacts.name, contacts.phone, contacts.email, companies.name AS company_name, companies.created_at FROM contacts LEFT JOIN companies ON contacts.company_id = companies.id WHERE contacts.name = %s"
-        values = (search.name, )
+        query = "SELECT contacts.name, contacts.phone, contacts.email, companies.name AS company_name FROM contacts LEFT JOIN companies ON contacts.company_id = companies.id WHERE contacts.name = %s"
+        values = (contact_name, )
 
         cursor.execute(query, values)
         search_contact = cursor.fetchall()
