@@ -13,6 +13,7 @@ class CreateContact(BaseModel):
 class SearchContact(BaseModel):
     name : str = Field(min_length=2, max_length=50)
 
+
 class DeleteContact(BaseModel):
     email : EmailStr = Field(min_length=2, max_length=50)
     phone : str = Field(min_length=3, max_length=50)
@@ -23,7 +24,7 @@ async def get_contact():
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT contacts.name, contacts.phone, contacts.email, companies.name AS company_name, companies.created_at FROM contacts LEFT JOIN companies ON contacts.company_id = companies.id")
+        cursor.execute("SELECT contacts.name, contacts.phone, contacts.email, companies.name AS company_name, companies.created_at FROM contacts LEFT JOIN companies ON contacts.company_id = companies.id ORDER BY contacts.created_at DESC")
 
         get_contacts = cursor.fetchall()
 
