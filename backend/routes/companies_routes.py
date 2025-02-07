@@ -145,16 +145,10 @@ async def delete_company(company: DeleteCompany):
 @router.get("/get_total_companies")
 async def get_total_companies():
     try:
-        conn = get_connection()
-        cursor = conn.cursor(dictionary=True)
-
         query = "SELECT COUNT(companies.id) FROM companies"
         cursor.execute(query)
 
         get_total_company = cursor.fetchall()
-
-        cursor.close()
-        conn.close()
 
         return get_total_company
 
