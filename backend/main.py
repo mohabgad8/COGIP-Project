@@ -17,22 +17,22 @@ app.add_middleware(
 
 app.include_router(
     companies_router,
-    prefix="/companies"
+    # prefix="/companies"
 )
 
 app.include_router(
     contacts_router,
-    prefix="/contacts"
+    # prefix="/contacts"
 )
 
 app.include_router(
     invoices_router,
-    prefix="/invoices"
+    # prefix="/invoices"
 )
 
 app.include_router(
     users_router,
-    prefix="/users"
+    # prefix="/users"
 )
 
 @app.get("/")

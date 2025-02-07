@@ -4,7 +4,7 @@ import {NgForOf} from '@angular/common';
 @Component({
   selector: 'app-company-info',
   imports: [
-    NgForOf
+    NgForOf,
   ],
   templateUrl: './company-info.component.html',
   standalone: true,

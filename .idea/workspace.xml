@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ad0d364-9a6f-47a2-a373-a8c11a756bf5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Cogip Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Cogip Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/dashboardpage/dashboardpage.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/dashboardpage/dashboardpage.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/dashboardpage/dashboardpage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/dashboardpage/dashboardpage.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/companies_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/companies_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/companiespage/companiespage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/companiespage/companiespage.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/company-details-page/company-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/PagesComponents/company-details-page/company-details.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/SmallComponents/company-info/company-info.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/SmallComponents/company-info/company-info.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/SmallComponents/company-info/company-info.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/SmallComponents/company-info/company-info.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/SmallComponents/list/list.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/SmallComponents/list/list.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/components/SmallComponents/list/list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/SmallComponents/list/list.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +62,7 @@
     &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Max&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -110,10 +114,16 @@
       <workItem from="1738142294465" duration="11953000" />
       <workItem from="1738156690665" duration="3038000" />
       <workItem from="1738785301871" duration="1347000" />
+      <workItem from="1738874767234" duration="1394000" />
+      <workItem from="1738917168310" duration="916000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="save commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="save commit" />
   </component>
 </project>

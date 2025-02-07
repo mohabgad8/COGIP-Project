@@ -15,7 +15,7 @@ export class CompaniespageComponent implements OnInit {
   titleCompanies = 'All Companies'
   companiesColumn = [
     {
-      key: "name", label: "Name"
+      key: "name", label: "Company"
     },
     {
       key: "tva", label: "TVA"

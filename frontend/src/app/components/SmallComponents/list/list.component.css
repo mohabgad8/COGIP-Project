@@ -72,8 +72,12 @@
   }
 .clickable {
   cursor: pointer;
-  text-decoration: underline;
+
+}
+
+.clickable:hover {
   color: blue;
+  text-decoration: underline;
 }
   th:first-child, td:first-child {
     padding-left: 34px;
