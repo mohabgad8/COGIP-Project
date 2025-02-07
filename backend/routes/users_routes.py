@@ -49,7 +49,7 @@ async def add_user(users: User):
         cursor.execute(query, values)
         db.commit()
 
-        return {"message" : "User added successfully", "user_id" : cursor.lastrowid}
+        return {"message" : "L'utilisateur a été modifié", "user_id" : cursor.lastrowid}
 
     except Exception as e:
         db.rollback()
@@ -70,6 +70,10 @@ async def get_user():
 @router.put("/update_user/{user_id}")
 async def update_user(user_id: int, user: User):
     try:
+        cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
+        if not cursor.fetchone():
+            raise HTTPException(status_code=404, detail="Utilisateur non trouvée")
+
         query = """
             UPDATE users
             SET first_name = %s, last_name = %s, email = %s, password = %s
@@ -80,12 +84,12 @@ async def update_user(user_id: int, user: User):
         db.commit()
         # verify if the user has been modified
         if cursor.rowcount == 0:
-            raise HTTPException(status_code=404, detail = "User not found or no changes made")
+            raise HTTPException(status_code=404, detail = "Données non-modifiées")
 
         #Get modified user
         cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
         updated_user = cursor.fetchone()
-        return {"message" : "User updated successfully", "updated_user": updated_user}
+        return {"message" : "L'utilisateur a été modifié", "updated_user": updated_user}
 
     except Exception as e:
         db.rollback()
@@ -101,9 +105,9 @@ async def delete_user(user: DeleteUser):
 
         # verify if the user has been deleted
         if cursor.rowcount == 0:
-            raise HTTPException(status_code=404, detail="User not found or no changes made")
+            raise HTTPException(status_code=404, detail="Données non-modifiées")
 
-        return {"message" : "User deleted successfully !"}
+        return {"message" : "Utilisateur supprimé !"}
 
     except Exception as e:
         db.rollback()
@@ -121,13 +125,13 @@ async def login_user(required_user: LoginRequest):
 
         # Verify if user exists in database
         if not db_user:
-            raise HTTPException(status_code=404, detail="User not found, try again")
+            raise HTTPException(status_code=404, detail="Utilisateur non trouvé")
 
         # Verify if password corresponds
         stored_password_hex = db_user['password']
         if verify_password(required_user.password, stored_password_hex):
             return {"message" : "Login successful !"}
-        else: raise HTTPException(status_code=401, detail="Invalid password, try again")
+        else: raise HTTPException(status_code=401, detail="Mot de passe incorrect")
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

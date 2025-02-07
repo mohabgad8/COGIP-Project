@@ -21,6 +21,26 @@ class DeleteContact(BaseModel):
     email : EmailStr = Field(min_length=2, max_length=50)
     phone : str = Field(min_length=3, max_length=50)
 
+
+@router.get("/get_contact/{contact_name}")
+async def get_invoice(contact_name: str):
+    try:
+        cursor.execute("SELECT * FROM contacts WHERE name = %s", (contact_name,))
+        if not cursor.fetchone():
+            raise HTTPException(status_code=404, detail="Contact non trouvé")
+
+        query = "SELECT contacts.name, contacts.company_id, contacts.phone, contacts.name FROM contacts WHERE contacts.name = %s"
+        values = (contact_name,)
+
+        cursor.execute(query, values)
+
+        get_one_contact = cursor.fetchone()
+
+        return get_one_contact
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @router.get("/get_all_contacts")
 async def get_contact():
     try:
@@ -37,7 +57,6 @@ async def get_contact():
 @router.get("/search_contact")
 async def search_contacts(search: SearchContact):
     try:
-
         query = "SELECT contacts.name, contacts.phone, contacts.email, companies.name AS company_name, companies.created_at FROM contacts LEFT JOIN companies ON contacts.company_id = companies.id WHERE contacts.name = %s"
         values = (search.name, )
 

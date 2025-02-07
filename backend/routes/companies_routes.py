@@ -25,9 +25,12 @@ class DeleteCompany(BaseModel):
     name: str
 
 # get all companies' infos
-@router.get("/get_company")
-async def get_company(required_company: RequiredCompany):
+@router.get("/get_company/{company_name")
+async def get_company(company_name: str):
     try:
+        cursor.execute("SELECT companies.id, companies.name, companies.country, companies.tva, companies.created_at, types.name AS type FROM companies LEFT JOIN types ON companies.type_id = types.id WHERE companies.name = %s", (company_name,))
+        if not cursor.fetchone():
+            raise HTTPException(status_code=404, detail="Entreprise non trouvé")
         # get required_company's infos + type
         query = """
             SELECT companies.id, companies.name, companies.country, companies.tva, companies.created_at, types.name AS type
@@ -35,11 +38,11 @@ async def get_company(required_company: RequiredCompany):
             LEFT JOIN types ON companies.type_id = types.id
             WHERE companies.name = %s
         """
-        values = (required_company.name,)
+        values = (company_name,)
         cursor.execute(query, values)
         fetched_company = cursor.fetchall()
 
-        return {"companies: ": fetched_company}
+        return {"Entreprise: ": fetched_company}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -90,7 +93,7 @@ async def add_company(new_company: NewCompany):
         cursor.execute(query, values)
         db.commit()
 
-        return {"Company added successfully: " : cursor.lastrowid}
+        return {"Entreprise ajoutée: " : cursor.lastrowid}
 
     except Exception as e:
         db.rollback()
@@ -100,6 +103,10 @@ async def add_company(new_company: NewCompany):
 @router.put("/update_company/{company_id}")
 async def update_company(company_id: int, required_company: UpdatedCompany):
     try:
+        cursor.execute("SELECT * FROM companies WHERE id = %s", (company_id,))
+        if not cursor.fetchone():
+            raise HTTPException(status_code=404, detail="Entreprise non trouvé")
+
         query = """
             UPDATE companies
             SET name = %s, country = %s, tva = %s, type_id = %s
@@ -110,12 +117,12 @@ async def update_company(company_id: int, required_company: UpdatedCompany):
         db.commit()
 
         if cursor.rowcount == 0:
-            raise HTTPException(status_code=404, detail="Company not found or no changes made")
+            raise HTTPException(status_code=404, detail="Données non-modifiées")
 
         # Get modified company
         cursor.execute("SELECT * FROM companies WHERE id = %s", (company_id,))
         updated_company = cursor.fetchone()
-        return {"message": "User updated successfully", "updated_user": updated_company}
+        return {"message": "Les données de ont bien été adaptées", "updated_company": updated_company}
 
     except Exception as e:
         db.rollback()
@@ -132,9 +139,9 @@ async def delete_company(company: DeleteCompany):
 
         # verify if the company has been deleted
         if cursor.rowcount == 0:
-            raise HTTPException(status_code=404, detail="Company not found or no changes made")
+            raise HTTPException(status_code=404, detail="Données non-modifiées")
 
-        return {"message" : "Company deleted successfully !"}
+        return {"message" : "Entreprise a été supprimée"}
 
     except Exception as e:
         db.rollback()
@@ -153,5 +160,5 @@ async def get_total_companies():
         return get_total_company
 
     except Exception as e:
-        conn.rollback()
+        db.rollback()
         raise HTTPException(status_code=500, detail=str(e))

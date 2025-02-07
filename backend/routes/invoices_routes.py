@@ -34,6 +34,10 @@ class GetAllInvoices(BaseModel):
 @router.get("/get_invoice/{ref_invoice}")
 async def get_invoice(ref_invoice: str):
     try:
+        cursor.execute("SELECT * FROM invoices WHERE ref = %s", (ref_invoice,))
+        if not cursor.fetchone():
+            raise HTTPException(status_code=404, detail="Facture non trouvée")
+
         query = "SELECT invoices.ref, invoices.date_due, companies.name AS company_name, invoices.created_at FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE invoices.ref = %s"
         values = (ref_invoice,)
 
@@ -87,6 +91,13 @@ async def get_last_invoices():
 @router.get("/get_last_invoices_company/{company_name}")
 async def get_last_invoices_company(company_name : str):
     try:
+
+        query = "SELECT invoices.ref, invoices.date_due, invoices.created_at, companies.name AS company_name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE companies.name = %s ORDER BY created_at DESC LIMIT 5"
+        values = (company_name,)
+        cursor.execute(query, values)
+        if not cursor.fetchall():
+            raise HTTPException(status_code=404, detail="Entreprise non trouvée")
+
         query = "SELECT invoices.ref, invoices.date_due, invoices.created_at, companies.name AS company_name FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE companies.name = %s ORDER BY created_at DESC LIMIT 5"
         values = (company_name,)
 
@@ -110,7 +121,7 @@ async def create_invoices(invoices: InvoicesVerify ):
 
         new_id = cursor.lastrowid
         date_part = datetime.strptime(invoices.date_due, "%Y-%m-%d").strftime("%Y%m%d")
-        invoice_ref = f"F{date_part}-{new_id:04d}"
+        invoice_ref = f"F{date_part}-{new_id:03d}"
 
         update_query ="UPDATE invoices SET ref = %s where invoices.id = %s"
         values = (invoice_ref, new_id,)
@@ -132,7 +143,7 @@ async def update_invoices(date_due: date, invoices: InvoicesVerify ):
     try:
         cursor.execute("SELECT * FROM invoices WHERE date_due = %s", (date_due,))
         if not cursor.fetchone():
-            raise HTTPException(status_code=404, detail="Facture non trouvé")
+            raise HTTPException(status_code=404, detail="Facture non trouvée")
 
         query = "UPDATE invoices SET ref = %s, id_company = %s WHERE date_due = %s"
         values = (invoices.ref, invoices.id_company, date_due)
@@ -154,7 +165,7 @@ async def delete_invoice(date_due: date, invoices: DeleteInvoices):
     try:
         cursor.execute("SELECT * FROM invoices WHERE date_due = %s", (date_due,))
         if not cursor.fetchone():
-            raise HTTPException(status_code=404, detail="Contact non trouvé")
+            raise HTTPException(status_code=404, detail="Facture non trouvée")
 
         query = "DELETE FROM invoices WHERE ref = %s"
         values = (invoices.ref,)
