@@ -6,6 +6,7 @@ import {ContactpageComponent} from './components/PagesComponents/contactpage/con
 import {CompaniespageComponent} from './components/PagesComponents/companiespage/companiespage.component';
 import {AlternativeLayoutComponent} from './components/PagesComponents/alternative-layout/alternative-layout.component';
 import {LoginpageComponent} from './components/PagesComponents/loginpage/loginpage.component';
+import {RegisterpageComponent} from './components/PagesComponents/registerpage/registerpage.component';
 import {DashboardpageComponent} from './components/PagesComponents/dashboardpage/dashboardpage.component';
 
 export const routes: Routes = [
@@ -23,6 +24,7 @@ export const routes: Routes = [
         path: '', component: AlternativeLayoutComponent,
         children: [
           { path: 'login', component: LoginpageComponent },
+          { path: 'register', component: RegisterpageComponent },
           { path: 'dashboard', component: DashboardpageComponent }
         ]
       },
