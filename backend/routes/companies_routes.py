@@ -139,3 +139,25 @@ async def delete_company(company: DeleteCompany):
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
+
+
+
+@router.get("/get_total_companies")
+async def get_total_companies():
+    try:
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        query = "SELECT COUNT(companies.id) FROM companies"
+        cursor.execute(query)
+
+        get_total_company = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return get_total_company
+
+    except Exception as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))

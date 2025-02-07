@@ -158,3 +158,24 @@ async def delete_contact(contacts_id: int, contacts: DeleteContact ):
     except Exception as e:
         conn.rollback()
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/get_total_contacts")
+async def get_total_contacts():
+    try:
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        query = "SELECT COUNT(contacts.id) FROM contacts"
+        cursor.execute(query)
+
+        get_total_contact = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return get_total_contact
+
+    except Exception as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))

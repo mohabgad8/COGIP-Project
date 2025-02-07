@@ -216,3 +216,23 @@ async def delete_invoice(date_due: date, invoices: DeleteInvoices):
     except Exception as e:
         conn.rollback()
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/get_total_invoices")
+async def get_total_invoices():
+    try:
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        query = "SELECT COUNT(invoices.id) FROM invoices"
+        cursor.execute(query)
+
+        get_total_invoice = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return get_total_invoice
+
+    except Exception as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
