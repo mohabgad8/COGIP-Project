@@ -58,7 +58,7 @@ async def get_last5_companies():
         cursor.execute(query)
         last5_companies = cursor.fetchall()
 
-        return {"last 5 companies: ": last5_companies}
+        return last5_companies
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -75,7 +75,7 @@ async def get_all_companies():
         cursor.execute(query)
         all_companies = cursor.fetchall()
 
-        return {"All companies: ": all_companies}
+        return all_companies
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
