@@ -1,16 +1,17 @@
+<section class="header">
+  <h1 id="title"><a routerLink="/home">COGIP</a></h1>
+  <h2 id="login"><a id="a_login" routerLink="/register">Sign up</a></h2>
+</section>
+
 <section class="login">
-  <h1>COGIP</h1>
-  <a routerLink="/home" class="home-link">Aller à l'accueil</a>
 <div class="formcontainer">
-  <h2>Connecte toi et accède à ton Dashboard!</h2>
-<form action="">
-  <p>Entre ton E-mail : </p>
-  <input type="text" placeholder="E-mail">
+  <h2 id="login_title">Login</h2>
+<form action="" method="post">
+  <input type="email" placeholder="Email">
   <br>
-  <p>Entre ton Mot de Passe : </p>
-  <input type="password" placeholder="Password">
+  <input type="text" placeholder="Mot de passe">
   <br>
-  <input type="submit" value="Valider" id="submit">
+  <input class="submit" type="submit" name="submit" routerLink="/dashboard">
 </form>
 </div>
 </section>
