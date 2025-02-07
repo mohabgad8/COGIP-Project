@@ -1,6 +1,6 @@
 import re
 from fastapi import HTTPException, APIRouter
-from pydantic import BaseModel, EmailStr, validator, field_validator
+from pydantic import BaseModel, EmailStr, field_validator
 from config.database import get_connection, hash_password, verify_password
 
 router = APIRouter()

@@ -17,7 +17,7 @@ class DeleteInvoices(BaseModel):
     ref : str = Field(min_length=2, max_length=50)
 
 class GetInvoice(BaseModel):
-    id : int = Field(min_length=2, max_length=50)
+    ref : str = Field(min_length=2, max_length=50)
 
 class GetAllInvoices(BaseModel):
     ref: str = Field(min_length=2, max_length=50)
@@ -28,14 +28,14 @@ class GetAllInvoices(BaseModel):
         from_attribute = True
 
 
-@router.get("/get_invoice")
-async def get_invoice(id_invoice: GetInvoice):
+@router.get("/get_invoice/{ref_invoice}")
+async def get_invoice(ref_invoice: str):
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        query = "SELECT invoices.ref, companies.name AS company_name, invoices.created_at FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE invoices.id = %s"
-        values = (id_invoice.id,)
+        query = "SELECT invoices.ref, invoices.date_due, companies.name AS company_name, invoices.created_at FROM invoices LEFT JOIN companies ON invoices.id_company = companies.id WHERE invoices.ref = %s"
+        values = (ref_invoice,)
 
         cursor.execute(query, values)
 
