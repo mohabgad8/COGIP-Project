@@ -8,6 +8,7 @@ import {NgForOf, NgOptimizedImage} from '@angular/common';
     NgForOf,
     NgOptimizedImage
   ],
+  standalone:true,
   templateUrl: './contact-people.component.html',
   styleUrl: './contact-people.component.css'
 })

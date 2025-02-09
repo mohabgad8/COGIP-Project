@@ -3,12 +3,15 @@ import {ListComponent} from "../../SmallComponents/list/list.component";
 import {ApiService} from "../../../service/api.service";
 import {ActivatedRoute} from '@angular/router';
 import {DetailsComponent} from '../../SmallComponents/details/details.component';
+import {ContactPeopleComponent} from '../../SmallComponents/contact-people/contact-people.component';
+
 
 @Component({
   selector: 'app-company-details-page',
     imports: [
         DetailsComponent,
-        ListComponent
+        ListComponent,
+        ContactPeopleComponent
     ],
   standalone:true,
   templateUrl: './company-details.component.html',
