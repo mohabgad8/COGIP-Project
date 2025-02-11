@@ -1,32 +1,39 @@
 .banner {
   height: 500px;
   background: #F9DE4E;
-  display: flex;
   justify-content: space-between;
   margin-bottom: 52px;
   width: 100%;
   position: relative;
-  bottom: 1px;
-
-  .titleandimg{
-    width: calc(100% - 251px);
-    height: 500px;
-    display: flex;
-    justify-content: space-around;
-    margin: auto;
-  h1{
-    margin-left: 22px;
-    display: inline-block;
-    white-space: nowrap;
-
-
-  }
-  img {
-    position: relative;
-    left: 50px;
-    bottom: 100px;
-
-
-  }
+  display: flex;
+  flex-direction: column;
 }
+
+.titleandimg {
+  width: calc(100% - 251px);
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+}
+
+.titleandimg h1 {
+  margin-left: 22px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.titleandimg img {
+  position: relative;
+  left: 50px;
+  bottom: 100px;
+}
+
+.rectangle {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto; /* Ajustez la hauteur selon vos besoins */
 }
