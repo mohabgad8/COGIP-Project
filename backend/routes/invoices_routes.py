@@ -4,7 +4,6 @@ from pydantic import BaseModel, Field
 from datetime import datetime, date
 import uuid
 
-
 router = APIRouter()
 
 conn = get_connection()
