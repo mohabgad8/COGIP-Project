@@ -19,7 +19,7 @@ async def get_types(ref_id: TypesVerify):
         if not cursor.fetchone():
             raise HTTPException(status_code=404, detail="Type non trouvée")
 
-        query = "SELECT types.name FROM types WHERE types.id = %s"
+        query = "SELECT types.name FROM types WHERE id = %s"
         values = (ref_id,)
 
         cursor.execute(query, values)
