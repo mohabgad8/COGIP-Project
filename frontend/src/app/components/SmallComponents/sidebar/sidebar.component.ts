@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
+import {RouterLink} from '@angular/router';
 
+interface FormField {
+  label: string;
+  placeholder: string;
+}
 @Component({
   selector: 'app-sidebar',
-  imports: [],
-  standalone:true,
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  standalone: true,
+  imports: [
+    RouterLink
+  ],
+  styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
 

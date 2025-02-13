@@ -1,0 +1,14 @@
+<div *ngFor="let field of formFields[activeFormKey]">
+  <label>{{ field.label }}</label>
+
+  <ng-container [ngSwitch]="field.type">
+    <input *ngSwitchCase="'text'" [placeholder]="field.placeholder" type="text" />
+    <input *ngSwitchCase="'email'" [placeholder]="field.placeholder" type="email" />
+    <input *ngSwitchCase="'tel'" [placeholder]="field.placeholder" type="tel" />
+    <input *ngSwitchCase="'date'" [placeholder]="field.placeholder" type="date" />
+
+    <select *ngSwitchCase="'select'">
+      <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+    </select>
+  </ng-container>
+</div>

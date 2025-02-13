@@ -1,0 +1,9 @@
+<section class="contact_main_box">
+<h2>{{ title }}</h2>
+  <section class="every_contact">
+<section *ngFor="let cont of contact" class="main_contact_people">
+  <img ngSrc="{{ cont.child.pdp }}" alt="photo de profil de l'utilisateur" height="132" width="132">
+  <h3>{{ cont.child.name }}<br>{{ cont.child.lastName }}</h3>
+  </section>
+</section>
+</section>
