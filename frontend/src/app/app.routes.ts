@@ -10,6 +10,15 @@ import {RegisterpageComponent} from './components/PagesComponents/registerpage/r
 import {DashboardpageComponent} from './components/PagesComponents/dashboardpage/dashboardpage.component';
 import {CompanyDetailsComponent} from './components/PagesComponents/company-details-page/company-details.component';
 import {ContactDetailsComponent} from './components/PagesComponents/contact-details-page/contact-details.component';
+import {
+  DashboardinvoicepageComponent
+} from './components/PagesComponents/dashboardinvoicepage/dashboardinvoicepage.component';
+import {
+  DashboardcontactpageComponent
+} from './components/PagesComponents/dashboardcontactpage/dashboardcontactpage.component';
+import {
+  DashboardcompaniepageComponent
+} from './components/PagesComponents/dashboardcompaniepage/dashboardcompaniepage.component';
 
 export const routes: Routes = [
    { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -30,7 +39,12 @@ export const routes: Routes = [
         children: [
           { path: 'login', component: LoginpageComponent },
           { path: 'register', component: RegisterpageComponent },
-          { path: 'dashboard', component: DashboardpageComponent }
+          { path: 'dashboard', component: DashboardpageComponent,
+        children: [
+          { path: 'invoices', component: DashboardinvoicepageComponent },
+          { path: 'contacts', component: DashboardcontactpageComponent },
+          { path: 'companies', component: DashboardcompaniepageComponent }
+          ]}
         ]
       },
       { path: '**', redirectTo: 'home' }
