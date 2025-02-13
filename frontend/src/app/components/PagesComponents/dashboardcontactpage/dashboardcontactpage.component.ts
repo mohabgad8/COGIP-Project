@@ -38,4 +38,10 @@ export class DashboardcontactpageComponent implements OnInit {
       }
     });
   }
+
+  submitContact(formData: any) {
+    this.apiService.postData(formData, 'add_contact').subscribe(response => {
+      console.log('Contact added successfully!', response);
+    });
+}
 }

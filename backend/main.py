@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routes.types_routes import router as types_router
 from routes.companies_routes import router as companies_router
 from routes.contacts_routes import router as contacts_router
 from routes.invoices_routes import router as invoices_router
@@ -32,6 +33,11 @@ app.include_router(
 
 app.include_router(
     users_router,
+    # prefix="/users"
+)
+
+app.include_router(
+    types_router,
     # prefix="/users"
 )
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {NgForOf, NgSwitch, NgSwitchCase} from '@angular/common';
 
 interface FormField {
@@ -22,4 +22,10 @@ interface FormField {
 export class FormComponent {
   @Input() formFields: { [key: string]: FormField[] } = {};
   @Input() activeFormKey: string = '';
+  @Output() formSubmit = new EventEmitter<any>();
+
+  submitForm() {
+    this.formSubmit.emit(this.formFields[this.activeFormKey]);
+  }
 }
+

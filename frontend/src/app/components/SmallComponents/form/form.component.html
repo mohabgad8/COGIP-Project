@@ -6,9 +6,11 @@
     <input *ngSwitchCase="'email'" [placeholder]="field.placeholder" type="email" />
     <input *ngSwitchCase="'tel'" [placeholder]="field.placeholder" type="tel" />
     <input *ngSwitchCase="'date'" [placeholder]="field.placeholder" type="date" />
-
     <select *ngSwitchCase="'select'">
       <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
     </select>
+
   </ng-container>
 </div>
+<button (click)="submitForm()">Submit</button>
+

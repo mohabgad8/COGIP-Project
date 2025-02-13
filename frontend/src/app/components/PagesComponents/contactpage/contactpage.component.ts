@@ -41,6 +41,6 @@ export class ContactpageComponent implements OnInit{
       this.AllContactsData = data;
       console.log(data)
     });
-  }
 
+  }
 }

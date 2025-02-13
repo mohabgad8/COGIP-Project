@@ -12,21 +12,17 @@ cursor = conn.cursor(dictionary=True)
 class TypesVerify(BaseModel):
     ref_id : int
 
-@router.get("/get_types/{ref_id}")
-async def get_types(ref_id: TypesVerify):
+@router.get("/get_all_types")
+async def get_all_types():
     try:
-        cursor.execute("SELECT types.name FROM types WHERE id = %s", (ref_id,))
-        if not cursor.fetchone():
-            raise HTTPException(status_code=404, detail="Type non trouvée")
+        cursor.execute("SELECT name FROM types")  
+        types_list = cursor.fetchall()
 
-        query = "SELECT types.name FROM types WHERE id = %s"
-        values = (ref_id,)
+        if not types_list:
+            raise HTTPException(status_code=404, detail="Aucun type trouvé")
 
-        cursor.execute(query, values)
-
-        get_one_type = cursor.fetchone()
-
-        return get_one_type
+        type_names = [t["name"] for t in types_list]  
+        return type_names  
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
