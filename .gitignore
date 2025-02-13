@@ -9,3 +9,5 @@ backend/get-pip.py
 .idea/workspace.xml
 backend/__init__.py
 .env
+.vscode/
+__pycache__/
