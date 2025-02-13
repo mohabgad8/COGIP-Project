@@ -1,10 +1,18 @@
 import { Component } from '@angular/core';
 import {SidebarComponent} from '../../SmallComponents/sidebar/sidebar.component';
+import {RouterOutlet} from '@angular/router';
 
+
+
+interface FormField {
+  label: string
+  placeholder: string
+}
 @Component({
   selector: 'app-dashboardpage',
   imports: [
-    SidebarComponent
+    SidebarComponent,
+    RouterOutlet,
   ],
   standalone:true,
   templateUrl: './dashboardpage.component.html',
