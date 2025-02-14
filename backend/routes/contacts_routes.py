@@ -9,7 +9,7 @@ cursor = conn.cursor(dictionary=True)
 
 class CreateContact(BaseModel):
     name : str = Field(min_length=2, max_length=50)
-    company_name : str
+    company_name : str = Field(min_length=2, max_length=50)
     email : EmailStr = Field(min_length=3, max_length=50)
     phone : str = Field(min_length=10, max_length=50)
 
@@ -57,6 +57,21 @@ async def get_contact():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@router.get("/get_all_contacts")
+async def get_contact():
+    try:
+        cursor.execute("SELECT c.id, c.name, c.email, c.phone, co.name AS company_name FROM contacts c JOIN companies co ON c.company_id = co.id")
+
+        contacts_list = cursor.fetchall()
+
+        if not contacts_list:
+            raise HTTPException(status_code=400, detail="Contact introuvable")
+
+        return [{"id":c[0], "name":c[1], "email": c[2], "phone": c[3], "company_name": c[4]}
+                for c in contacts_list]
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/get_contact/{contact_name}")
 async def get_contact(contact_name: str):
@@ -68,9 +83,6 @@ async def get_contact(contact_name: str):
         cursor.execute(query, values)
         search_contact = cursor.fetchall()
 
-        cursor.close()
-        conn.close()
-
         return search_contact
 
     except Exception as e:
@@ -79,13 +91,9 @@ async def get_contact(contact_name: str):
 @router.get("/get_last_contacts")
 async def get_last_contacts():
     try:
-
         cursor.execute("SELECT contacts.name, contacts.phone, contacts.email, companies.name AS company_name, companies.created_at FROM contacts LEFT JOIN companies ON contacts.company_id = companies.id ORDER BY created_at DESC LIMIT 5")
 
         get_last_contact = cursor.fetchall()
-
-        cursor.close()
-        conn.close()
 
         return get_last_contact
 
@@ -136,7 +144,6 @@ async def create_contact(contacts: CreateContact):
 @router.put("/update_contact/{contacts_id}")
 async def update_contact(contacts_id: int, contacts: CreateContact ):
     try:
-
         cursor.execute("SELECT * FROM contacts WHERE id = %s", (contacts_id,))
         if not cursor.fetchone():
             raise HTTPException(status_code=404, detail="Contact non trouvé")
@@ -150,9 +157,6 @@ async def update_contact(contacts_id: int, contacts: CreateContact ):
         cursor.execute ("SELECT * FROM contacts WHERE id = %s", (contacts_id,))
         update_contacts = cursor.fetchone()
 
-        cursor.close()
-        conn.close()
-
         return update_contacts
 
     except Exception as e:
@@ -163,7 +167,6 @@ async def update_contact(contacts_id: int, contacts: CreateContact ):
 @router.delete("/delete_contact/{contacts_id}")
 async def delete_contact(contacts_id: int, contacts: DeleteContact ):
     try:
-
         cursor.execute("SELECT * FROM contacts WHERE id = %s", (contacts_id,))
         if not cursor.fetchone():
             raise HTTPException(status_code=404, detail="Contact non trouvé")
@@ -177,9 +180,6 @@ async def delete_contact(contacts_id: int, contacts: DeleteContact ):
         cursor.execute("SELECT * FROM contacts")
 
         delete_contacts = cursor.fetchall()
-
-        cursor.close()
-        conn.close()
 
         return delete_contacts
 
