@@ -1,11 +1,48 @@
-form {
-  margin-top: 50px;
+.formcontainer {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  margin: auto;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-button {
-  width: 20%;
+/* Uniformiser la taille des champs */
+.formcontainer input, 
+.formcontainer select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Évite que le padding casse la largeur */
+}
+
+/* Forcer les labels à prendre toute la ligne */
+.formcontainer label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Centrer le bouton et l'uniformiser */
+.formcontainer button {
+  width: 100%;
+  padding: 8px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.formcontainer button:hover {
+  background-color: #0056b3;
 }

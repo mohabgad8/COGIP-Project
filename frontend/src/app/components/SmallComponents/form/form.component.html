@@ -1,16 +1,17 @@
-<div *ngFor="let field of formFields[activeFormKey]">
-  <label>{{ field.label }}</label>
+<div class="formcontainer">
+  <div *ngFor="let field of formFields[activeFormKey]" class="form-group">
+    <label>{{ field.label }}</label>
 
-  <ng-container [ngSwitch]="field.type">
-    <input *ngSwitchCase="'text'" [placeholder]="field.placeholder" type="text" />
-    <input *ngSwitchCase="'email'" [placeholder]="field.placeholder" type="email" />
-    <input *ngSwitchCase="'tel'" [placeholder]="field.placeholder" type="tel" />
-    <input *ngSwitchCase="'date'" [placeholder]="field.placeholder" type="date" />
-    <select *ngSwitchCase="'select'">
-      <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
-    </select>
+    <ng-container [ngSwitch]="field.type">
+      <input *ngSwitchCase="'text'" [(ngModel)]="field.inputValue" [placeholder]="field.placeholder" type="text" name="{{field.label}}"/>
+      <input *ngSwitchCase="'email'" [(ngModel)]="field.inputValue" [placeholder]="field.placeholder" type="email" name="{{field.label}}"/>
+      <input *ngSwitchCase="'tel'" [(ngModel)]="field.inputValue" [placeholder]="field.placeholder" type="tel" name="{{field.label}}"/>
+      <input *ngSwitchCase="'date'" [(ngModel)]="field.inputValue" [placeholder]="field.placeholder" type="date" name="{{field.label}}"/>
+      <select *ngSwitchCase="'select'" [(ngModel)]="field.selectedOption" name="{{field.label}}">
+        <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+      </select>
+    </ng-container>
+  </div>
 
-  </ng-container>
+  <button (click)="submitForm()">Submit</button>
 </div>
-<button (click)="submitForm()">Submit</button>
-
