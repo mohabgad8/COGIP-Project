@@ -9,7 +9,7 @@ cursor = db.cursor(dictionary = True)
 
 class NewCompany(BaseModel):
     name: str
-    type_id: int
+    type: str
     country: str
     tva: str
 
@@ -82,17 +82,27 @@ async def get_all_companies():
 @router.post("/add_company")
 async def add_company(new_company: NewCompany):
     try:
-        query = "INSERT INTO companies (name, type_id, country, tva) VALUES (%s, %s, %s, %s)"
-        values = (new_company.name, new_company.type_id, new_company.country, new_company.tva)
+        query = "SELECT id FROM types WHERE TRIM(LOWER(name)) = TRIM(LOWER(%s))"
+        cursor.execute(query, (new_company.type,))
+        type_id_result = cursor.fetchone()
 
-        cursor.execute(query, values)
+        if not type_id_result:
+            raise HTTPException(status_code=400, detail=f"Type '{new_company.type}' introuvable")
+
+        type_id = type_id_result['id'] 
+        sql_query = "INSERT INTO companies (name, type_id, country, tva) VALUES (%s, %s, %s, %s)"
+        sql_values = (new_company.name, type_id, new_company.country, new_company.tva)
+
+        cursor.execute(sql_query, sql_values)
         db.commit()
 
-        return {"Company added successfully: " : cursor.lastrowid}
+        return {"message": "Company added successfully", "company_id": cursor.lastrowid}
 
     except Exception as e:
         db.rollback()
-        raise HTTPException(status_code=500, detail=str(e))
+        error_message = str(e)
+        raise HTTPException(status_code=500, detail=f"SQL Error: {error_message}")
+
 
 
 @router.put("/update_company/{company_id}")
@@ -137,3 +147,22 @@ async def delete_company(company: DeleteCompany):
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
+    
+@router.get("/get_type_for_dashboard")
+async def get_all_types():
+    try:
+        print("🔍 Fetching types from database...")
+        cursor.execute("SELECT name FROM types")
+        types_list = cursor.fetchall()
+
+        if not types_list:
+            raise HTTPException(status_code=404, detail="Aucun type trouvé")
+
+        types_clean = [t[0] if isinstance(t, tuple) else t['name'] for t in types_list]
+        print(f"✅ Types trouvés: {types_clean}")
+
+        return types_clean  
+
+    except Exception as e:
+        print(f"🔥 Erreur dans get_all_types: {e}")
+    raise HTTPException(status_code=500, detail=str(e))

@@ -109,67 +109,38 @@ async def get_last_invoices_company(company_name : str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
 @router.post("/add_invoice")
-async def create_invoices(invoices: InvoicesVerify):
+async def add_invoice(invoice: dict):
     try:
-        query = "INSERT INTO invoices (date_due, id_company) VALUES (%s, %s)"
-        values = (invoices.date_due, invoices.id_company,)
+      
+        query = "SELECT id FROM companies WHERE LOWER(name) = LOWER(%s)"
+        values = (invoice["company_name"],)
+        cursor.execute(query, values)
+        company_id_result = cursor.fetchone()
+        id_company = company_id_result["id"]  
+        today = datetime.today().strftime('%Y%m%d')
+
+        query = "SELECT COUNT(*) AS total FROM invoices WHERE DATE(created_at) = CURDATE()"
+        cursor.execute(query)
+        count = cursor.fetchone()["total"] + 1
+        ref = f"F{today}-{count:03d}"
+
+        
+        query = "INSERT INTO invoices (date_due, id_company, ref) VALUES (%s, %s, %s)"
+        values = (invoice["due_date"], id_company, ref)
         cursor.execute(query, values)
         conn.commit()
 
-        new_id = cursor.lastrowid
+        return {"message": "Facture ajoutée avec succès", "ref": ref}
 
-        date_part = datetime.strptime(invoices.date_due, "%Y-%m-%d")
-
-        ref_date = date_part.strftime("%Y%m%d")
-
-        invoice_ref = f"F{ref_date}-{new_id:03d}"
-
-        u_query ="UPDATE invoices SET ref = %s where invoices.id = %s"
-        values = (invoice_ref, new_id,)
-        cursor.execute(u_query, values)
-        conn.commit()
-
-        query = "SELECT * FROM invoices WHERE ref = %s"
-        values = (invoice_ref,)
-        cursor.execute (query, values)
-
-        create_invoice = cursor.fetchone()
-
-        return create_invoice
 
     except Exception as e:
         conn.rollback()
+        print(f"🔥 ERREUR INCONNUE : {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# @router.post("/add_invoice")
-# async def create_invoices(invoices: InvoicesVerify):
-#     try:
-#         #strptime (string parse time) sert à convertir une string en objet dateime
-#         date_due = datetime.strptime(invoices.date_due, "%Y-%m-%d")
-#
-#         #strftime (string fomat time) sert à convertir un objet datetime en une string
-#         ref_date = date_due.strftime('%Y%m%d')
-#
-#         uuid_ref = f"F{ref_date}-{str(uuid.uuid4())[:32]}"
-#
-#         query = "INSERT INTO invoices (date_due, id_company, ref) VALUES (%s, %s, %s)"
-#         values = (invoices.date_due, invoices.id_company, uuid_ref)
-#
-#         cursor.execute(query, values)
-#         conn.commit()
-#
-#         query = "SELECT * FROM invoices WHERE ref = %s"
-#         cursor.execute(query, (uuid_ref,))
-#         created_invoice = cursor.fetchone()
-#
-#         return created_invoice
-#
-#     except Exception as e:
-#         conn.rollback()
-#         raise HTTPException(status_code=500, detail=str(e))
+
 
 @router.put("/update_invoice/{invoice_ref}")
 async def update_invoices(invoice_ref: str, invoices: InvoicesVerify ):
