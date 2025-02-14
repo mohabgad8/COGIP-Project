@@ -1,11 +1,14 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgForOf, NgSwitch, NgSwitchCase} from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface FormField {
   label: string;
-  placeholder: string;
+  placeholder?: string;
   type: string;
   options?: string[];
+  inputValue?: string; 
+  selectedOption?: string;
 }
 
 @Component({
@@ -15,17 +18,24 @@ interface FormField {
   imports: [
     NgSwitch,
     NgSwitchCase,
-    NgForOf
+    NgForOf,
+    FormsModule
   ],
   standalone: true
 })
 export class FormComponent {
   @Input() formFields: { [key: string]: FormField[] } = {};
   @Input() activeFormKey: string = '';
-  @Output() formSubmit = new EventEmitter<any>();
+  @Output() formSubmitted = new EventEmitter<any>();
 
   submitForm() {
-    this.formSubmit.emit(this.formFields[this.activeFormKey]);
+    const formData = this.formFields[this.activeFormKey].map(field => {
+      return {
+        label: field.label,
+        value: field.type === 'select' ? field.selectedOption : field.inputValue
+      };
+    });
+    this.formSubmitted.emit(formData);
   }
+  
 }
-
