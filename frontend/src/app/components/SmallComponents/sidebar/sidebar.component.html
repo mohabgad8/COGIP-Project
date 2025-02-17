@@ -1,10 +1,33 @@
 <section class="sidebar">
-  <p>Henry George</p>
-  <hr>
-  <ul>
-    <li [routerLink]="['/dashboard']">Dashboard</li>
-    <li [routerLink]="['/dashboard/invoices']">Invoices</li>
-    <li [routerLink]="['/dashboard/companies']">Companies</li>
-    <li [routerLink]="['/dashboard/contacts']">Contacts</li>
-  </ul>
+  <section class="sidebar_second">
+<img id="profile_picture" src="assets/img/Avatar_profil.png" alt="photo de profil de l'utilisateur">
+    <p id="name">Henry<br>George</p>
+  </section>
+  <hr id="hr_top">
+  <section class="section_ul">
+    <ul class="link">
+
+      <li class="li" id="dashboard" [routerLink]="['/dashboard']">
+        <img class="img_icone" id="icone_dashboard" src="assets/img/Icon_dashboard.png" alt="Icône dashboard">Dashboard
+      </li>
+
+      <li class="li" id="invoices" [routerLink]="['/dashboard/invoices']">
+        <img class="img_icone" id="icone_invoices" src="assets/img/Icon_Invoices.png" alt="Icône invoices">Invoices
+      </li>
+
+
+      <li class="li" id="companies" [routerLink]="['/dashboard/companies']">
+        <img class="img_icone" id="icone_companies" src="assets/img/Icon_Companies.png" alt="Icône companies">Companies
+      </li>
+
+      <li class="li" id="contacts" [routerLink]="['/dashboard/contacts']">
+        <img class="img_icone" id="icone_contacts" src="assets/img/Icon_contact.png" alt="Icône contacts">Contacts
+      </li>
+   </ul>
+  </section>
+  <hr id="hr_bottom">
+  <footer class="footer">
+    <img id="profile_picture_bottom" src="assets/img/Avatar_profil.png" alt="Photo de profil de l'utilisateur">
+    <p id="logout" [routerLink]="['/home']">Logout</p>
+  </footer>
 </section>

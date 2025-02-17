@@ -1,0 +1,133 @@
+* {
+  text-decoration: none;
+}
+
+#profile_picture {
+  width: 105px;
+  height: 105px;
+
+  margin-top: 54px;
+  margin-bottom: 21px;
+}
+
+#name {
+  font-family: "Roboto", serif;
+  font-weight: 900;
+  font-size: 25px;
+  line-height: 29.3px;
+
+  text-align: center;
+
+  margin-bottom: 42px;
+}
+
+.sidebar {
+  width: 17.813rem;
+  height: 79.875rem;
+  background: #fff;
+  align-items: center;
+}
+
+.sidebar_second {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#dashboard, #invoices, #companies, #contacts {
+  margin-top: 31px;
+}
+
+.section_ul {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-bottom: 744px;
+}
+
+ul {
+  list-style: none;
+
+  font-family: "Inter", serif;
+  font-weight: 400;
+  font-size: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#hr_top {
+  background: #E0E0E0;
+
+  margin-bottom: 56px;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  font-weight: 600;
+}
+
+.purple_line {
+  height: 100%;
+  width: 4px;
+  color: #9698D6;
+  margin-left: auto;
+}
+
+/* icône */
+
+.img_icone {
+  margin-right: 27px;
+}
+
+.li {
+  width: 246px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+}
+
+.li:hover {
+  cursor: pointer;
+}
+
+/* bottom */
+
+#hr_bottom {
+margin-bottom: 8px;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-left: 18px;
+  padding-right: 18px;
+
+  padding-bottom: 10px;
+}
+
+#profile_picture_bottom {
+  width: 48px;
+  height: 48px;
+}
+
+#logout {
+  font-family: "Inter", serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24.2px;
+  letter-spacing: 0;
+  color: #9698D6;
+}
+
+#logout:hover {
+  cursor: pointer;
+}

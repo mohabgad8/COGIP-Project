@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {SidebarComponent} from '../../SmallComponents/sidebar/sidebar.component';
 import {RouterOutlet} from '@angular/router';
+import {HeaderDashboardComponent} from '../../SmallComponents/header-dashboard/header-dashboard.component';
 
 
 
@@ -13,6 +14,7 @@ interface FormField {
   imports: [
     SidebarComponent,
     RouterOutlet,
+    HeaderDashboardComponent,
   ],
   standalone:true,
   templateUrl: './dashboardpage.component.html',
