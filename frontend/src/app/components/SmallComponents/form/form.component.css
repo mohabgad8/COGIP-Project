@@ -14,25 +14,25 @@
   margin-right: auto;
 }
 
-/* Uniformiser la taille des champs */
-.formcontainer input, 
+
+.formcontainer input,
 .formcontainer select {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-sizing: border-box; /* Évite que le padding casse la largeur */
+  box-sizing: border-box;
 }
 
-/* Forcer les labels à prendre toute la ligne */
+
 .formcontainer label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-/* Centrer le bouton et l'uniformiser */
+
 .formcontainer button {
   width: 100%;
   padding: 8px;
