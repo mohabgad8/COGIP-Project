@@ -16,7 +16,7 @@
         <td class="td_column" *ngFor="let col of column">
           <span *ngIf="col.key === 'created_at'">{{ formatDate(row[col.key])  }}</span>
           <span *ngIf="col.label === 'Company'" (click)=goToCompanyDetails(row[col.key]) class="clickable"> {{ row[col.key] }}</span>
-          <span *ngIf="col.label === 'Invoice number'" (click)=goToInvoiceDetails(row[col.key]) class="clickable"> {{ row[col.key] }}</span>
+          <span *ngIf="col.label === 'Invoice number'"> {{ row[col.key] }}</span>
           <span *ngIf="col.label === 'Name'" (click)=goToContactDetails(row[col.key]) class="clickable">{{ row[col.key] }}</span>
           <span *ngIf="col.label === 'Dates'">{{ row[col.key] }}</span>
           <span *ngIf="col.label === 'Invoice Number'">{{ row[col.key] }}</span>
